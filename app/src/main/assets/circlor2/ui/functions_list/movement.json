@@ -1,0 +1,12 @@
+{
+    "name": "movement",
+    "icon": "ic_directions_run",
+    "index": 0,
+    "items": [
+        {
+            "name": "s_teleport",
+            "widget_type": "action",
+            "path": "teleport/picker"
+        }
+    ]
+}

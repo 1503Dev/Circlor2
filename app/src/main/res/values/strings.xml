@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">Circlor2</string>
+    <string name="credits">制作人员名单</string>
+    <string name="special_thanks">特别鸣谢</string>
+    <string name="OSL">开放源代码许可</string>
+    <string name="movement">动态</string>
+    <string name="system">系统</string>
+    <string name="s_exit">一键闪退跑路</string>
+    <string name="s_teleport">传送</string>
+    <string name="position_picker">坐标选择器</string>
+    <string name="not_in_game">请在游戏内使用</string>
+    <string name="s_portrait_screen">竖屏</string>
+    <string name="s_exp_manager">经验值管理</string>
+    <string name="s_exp_level_change">改变</string>
+    <string name="s_exp_level_change_value">变动量</string>
+    <string name="game">游戏</string>
+    <string name="about">关于</string>
+</resources>

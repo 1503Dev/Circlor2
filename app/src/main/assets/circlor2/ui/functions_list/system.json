@@ -1,0 +1,17 @@
+{
+    "name": "system",
+    "icon": "ic_android",
+    "index": 500,
+    "items": [
+        {
+            "name": "s_exit",
+            "path": "exit",
+            "widget_type": "action"
+        },
+        {
+            "name": "s_portrait_screen",
+            "path": "portrait_screen",
+            "widget_type": "toggle"
+        }
+    ]
+}

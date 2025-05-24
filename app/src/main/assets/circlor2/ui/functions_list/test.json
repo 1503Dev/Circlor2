@@ -1,0 +1,123 @@
+{
+    "name": "test",
+    "icon": "ic_android",
+    "index": 999,
+    "hidden": false,
+    "items": [
+        {
+            "name": "testcall",
+            "widget_type": "action",
+            "path": "testcall"
+        },
+        {
+            "name": "toggle",
+            "path": "test_toggle_2",
+            "widget_type": "toggle",
+            "description": "介绍",
+            "items": [
+                {
+                    "name": "action",
+                    "widget_type": "action"
+                },
+                {
+                    "name": "toggle",
+                    "widget_type": "toggle",
+                    "items": [
+                        {
+                            "name": "action",
+                            "description": "介绍2",
+                            "widget_type": "action"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "toggle",
+            "path": "test_toggle_1",
+            "widget_type": "toggle",
+            "value": true
+        },
+        {
+            "name": "action",
+            "widget_type": "action"
+        },
+        {
+            "name": "collapse",
+            "widget_type": "collapse",
+            "items": [
+                {
+                    "name": "action",
+                    "widget_type": "action"
+                },
+                {
+                    "name": "slider",
+                    "widget_type": "slider",
+                    "min": 0,
+                    "max": 100,
+                    "step": 1
+                }
+            ]
+        },
+        {
+            "name": "test",
+            "widget_type": "collapse",
+            "items": [
+                {
+                    "name": "Set test_toggle_1 to true",
+                    "path": "test_toggle_1",
+                    "value": true,
+                    "widget_type": "action"
+                },
+                {
+                    "name": "Set test_toggle_1 to false",
+                    "path": "test_toggle_1",
+                    "value": false,
+                    "widget_type": "action"
+                },
+                {
+                    "name": "Set test_toggle_2 to 1",
+                    "path": "test_toggle_2",
+                    "value": 1,
+                    "widget_type": "action"
+                },
+                {
+                    "name": "Set test_toggle_2 to 0",
+                    "path": "test_toggle_2",
+                    "value": 0,
+                    "widget_type": "action"
+                }
+            ]
+        },
+        {
+            "name": "slider",
+            "path": "test_toggle_1",
+            "widget_type": "slider",
+            "max": 10
+        },
+        {
+            "name": "slider",
+            "path": "test_func",
+            "widget_type": "slider",
+            "min": 5,
+            "max": 10,
+            "step": 0.1
+        },
+        {
+            "name": "edit_text",
+            "widget_type": "edit_text"
+        },
+        {
+            "name": "edit_text",
+            "path": "test_edit_text",
+            "widget_type": "edit_text",
+            "input_type": "number",
+            "value": "默认文字"
+        },
+        {
+            "name": "edit_text",
+            "path": "test_edit_text",
+            "widget_type": "edit_text"
+        }
+    ]
+}

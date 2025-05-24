@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+    tools:context=".MainActivity">
+
+    <com.google.android.material.navigation.NavigationView
+        android:id="@+id/navigation_view"
+        android:layout_width="match_parent"
+        android:layout_weight="5"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        app:headerLayout="@layout/layout_main_nav_header"
+        app:itemBackground="?attr/selectableItemBackgroundBorderless"
+        app:itemIconTint="?attr/colorOnSurfaceVariant"
+        app:itemShapeAppearance="@style/ShapeAppearance.MediumComponent"
+        app:itemShapeFillColor="?attr/colorSurfaceContainerLow"
+        app:itemTextColor="@color/white"
+        app:menu="@menu/main_nav" />
+    
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_weight="2"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="16dp">
+            <include
+                layout="@layout/layout_main_home"/>
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

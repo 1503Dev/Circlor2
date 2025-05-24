@@ -1,0 +1,27 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <style name="Theme.Circlor2" parent="Theme.Material3.Dark">
+        <item name="colorPrimary">@color/indigo_500</item>
+        <item name="colorPrimaryVariant">@color/blue_900</item>
+    </style>
+    <style name="ShapeAppearance.MediumComponent" parent="ShapeAppearance.Material3.MediumComponent">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">12dp</item>
+    </style>
+    <style name="Theme.Transparent" parent="Theme.AppCompat">
+        <item name="android:windowBackground">@android:color/transparent</item><item name="android:windowIsTranslucent">true</item><item name="android:backgroundDimEnabled">false</item>
+    </style>
+    <style name="Theme.BlurDialog" parent="ThemeOverlay.Material3.MaterialAlertDialog">
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowCloseOnTouchOutside">true</item>
+        <item name="android:windowMinWidthMajor">@dimen/dialog_min_width</item>
+        <item name="android:windowMinWidthMinor">@dimen/dialog_min_width</item>
+    </style>
+    <style name="Theme.Circlor2.AppCompat" parent="Theme.AppCompat">
+        <item name="colorPrimary">@color/indigo_500</item>
+        <item name="colorPrimaryVariant">@color/blue_900</item>
+        <item name="colorOnSurface">@color/white</item>
+        <item name="colorOnPrimary">@color/indigo_500</item>
+        <item name="colorSurface">@color/blue_900</item>
+    </style>
+</resources>
