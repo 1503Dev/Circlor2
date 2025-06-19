@@ -16,8 +16,7 @@
 extern JavaVM *jvm;
 extern jclass JNI;
 extern std::string MC_VERSION;
-extern std::map<std::string, std::string> mcFunctions;
-extern std::map<std::string, std::map<std::string, long>> mcFunctionsOffset;
+extern std::map<std::string, long> mcFunctions;
 extern std::map<std::string, long> mcBaseOffset;
 extern std::map<std::string, double> circlor2FunctionsSave;
 extern std::map<std::string, std::string> circlor2FunctionsStringSave;
