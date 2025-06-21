@@ -1,6 +1,8 @@
 # Circlor2
 A mod for Minecraft: PE
 
+# 由于 MCPE 把 NativeActivity 换成了 GameActivity，暂时停止维护
+
 本工具底层原理与 Toolbox for Minecraft: PE 类似，但实现方法不同
 
 ## 下载
