@@ -1,10 +1,12 @@
-package dev1503.circlor2;
+package dev1503.circloralpha;
 
 import android.app.Activity;
 
+import dev1503.circlor.MinecraftActivityHandler;
+
 public class FakeActivity extends Activity {
     static {
-        System.loadLibrary("circlor2");
+        System.loadLibrary("circlor");
     }
     @Override
     protected void onCreate(android.os.Bundle savedInstanceState) {

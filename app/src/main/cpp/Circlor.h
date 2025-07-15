@@ -2,11 +2,11 @@
 // Created by TheChuan1503 on 2025/4/26.
 //
 
-#ifndef CIRCLOR2_CIRCLOR2_H
-#define CIRCLOR2_CIRCLOR2_H
+#ifndef CIRCLOR2_CIRCLOR_H
+#define CIRCLOR2_CIRCLOR_H
 
 
-class Circlor2 {
+class Circlor {
 public:
     static void hook(const char *name, void *hook);
     static void hook(long target, void *hook);
@@ -20,4 +20,4 @@ public:
 };
 
 
-#endif //CIRCLOR2_CIRCLOR2_H
+#endif //CIRCLOR2_CIRCLOR_H

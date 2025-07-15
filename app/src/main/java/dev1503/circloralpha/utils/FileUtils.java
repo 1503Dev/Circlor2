@@ -1,4 +1,4 @@
-package dev1503.circlor2.utils;
+package dev1503.circloralpha.utils;
 
 import java.io.File;
 import java.io.FileInputStream;

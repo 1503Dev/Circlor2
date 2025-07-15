@@ -1,0 +1,12 @@
+{
+    "1.16.201.01_arm64-v8a": {
+        "JNI_OnLoad": "41A6BDC",
+
+        "ClientInstance::getLocalPlayer": "5510B58",
+        "ClientInstance::isInGame": "55177A4",
+        "ClientInstance::update": "550E1F0",
+
+        "LocalPlayer::setPos": "5BA2DFC",
+        "LocalPlayer::addLevels": "5BA7658"
+    }
+}

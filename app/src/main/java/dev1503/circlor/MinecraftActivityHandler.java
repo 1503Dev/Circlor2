@@ -1,15 +1,12 @@
-package dev1503.circlor2;
+package dev1503.circlor;
 
 import android.animation.Animator;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
-import android.app.NativeActivity;
 import android.content.Context;
-import android.content.pm.ActivityInfo;
 import android.content.res.ColorStateList;
-import android.content.res.Configuration;
 import android.graphics.Color;
 import android.graphics.PixelFormat;
 import android.graphics.Typeface;
@@ -21,7 +18,6 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.DisplayMetrics;
 import android.util.Log;
-import android.view.DragEvent;
 import android.view.Gravity;
 import android.view.Menu;
 import android.view.MotionEvent;
@@ -52,10 +48,12 @@ import java.util.ArrayList;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicInteger;
 
-import dev1503.circlor2.utils.Config;
-import dev1503.circlor2.utils.MotionUtils;
-import dev1503.circlor2.utils.Utils;
-import dev1503.circlor2.utils.timerutils.Interval;
+import dev1503.circloralpha.FunctionHandler;
+import dev1503.circloralpha.R;
+import dev1503.circloralpha.utils.Config;
+import dev1503.circloralpha.utils.MotionUtils;
+import dev1503.circloralpha.utils.Utils;
+import dev1503.circloralpha.utils.timerutils.Interval;
 import tc.jsin.JSIN;
 import tc.jsin.JSONArray;
 import tc.jsin.JSONObject;
@@ -63,7 +61,7 @@ import tc.jsin.JSONObject;
 public class MinecraftActivityHandler {
     static final String TAG = "Java/MinecraftActivityHandler";
 
-    static Activity activity;
+    public static Activity activity;
     static Context context;
     static Config conf;
 
@@ -87,8 +85,8 @@ public class MinecraftActivityHandler {
         ShadowHook.init(new ShadowHook.ConfigBuilder()
                 .setMode(ShadowHook.Mode.UNIQUE)
                 .build());
-        JNI.setMinecraftVersion(Global.getMinecraftVersion());
-        JNI.setAssetManager(activity.getAssets());
+//        JNI.setMinecraftVersion(Global.getMinecraftVersion());
+//        JNI.setAssetManager(activity.getAssets());
 
         DisplayMetrics displayMetrics = context.getResources().getDisplayMetrics();
         screenWidth = displayMetrics.widthPixels;
@@ -96,7 +94,7 @@ public class MinecraftActivityHandler {
 
         wm = activity.getWindowManager();
         TextView textView = new TextView(context);
-        textView.setText("Circlor2 v0.1.1");
+        textView.setText("CirclorAlpha v0.1.0");
         textView.setTextSize(18);
         textView.setTextColor(0xFFFFFFFF);
         textView.setTypeface(Typeface.MONOSPACE);
@@ -109,11 +107,10 @@ public class MinecraftActivityHandler {
         );
         lp.x = 96;
         lp.y = 96;
-        // wm.addView(textView, lp);
+         wm.addView(textView, lp);
     }
     public static void onCreating(Activity activity) {
-        JSONArray supportedVersions = new JSONArray(Utils.readStringFromAssets(activity, "circlor2/supported_versions.json"));
-        if (!supportedVersions.hasValue(Global.getMinecraftVersion()) && !Global.fakeActivityEnabled){
+        if (!Global.SUPPORTED_VERSION.equals(Global.getMinecraftVersion()) && !Global.fakeActivityEnabled){
             return;
         }
         try {
@@ -126,11 +123,11 @@ public class MinecraftActivityHandler {
         FrameLayout functionsListContainer = (FrameLayout) functionsListLayout.findViewById(R.id.content);
         Menu navMenu = navigationView.getMenu();
 
-        String[] functionClassesPaths = Utils.listFilesFromAssets(activity, "circlor2/ui/functions_list");
+        String[] functionClassesPaths = Utils.listFilesFromAssets(activity, "circlor/ui/functions_list");
         ArrayList<JSONObject> functionClassesArrayList = new ArrayList<>();
         LinearLayout[] functionLayouts = new LinearLayout[functionClassesPaths.length];
         for (int i = 0; i < functionClassesPaths.length; i++) {
-            functionClassesArrayList.add(new JSONObject(Utils.readStringFromAssets(activity, "circlor2/ui/functions_list/" + functionClassesPaths[i])));
+            functionClassesArrayList.add(new JSONObject(Utils.readStringFromAssets(activity, "circlor/ui/functions_list/" + functionClassesPaths[i])));
         }
         functionClassesArrayList.sort((o1, o2) -> {
             int o1Index = o1.getInt("index", 0);
@@ -170,7 +167,7 @@ public class MinecraftActivityHandler {
                     try {
                         icon = activity.getResources().getIdentifier(functionClass.getString("icon", ""), "drawable", activity.getPackageName());
                     } catch (Exception e) {
-                        Log.e(TAG, "Function icon not found: circlor2.function." + name);
+                        Log.e(TAG, "Function icon not found: circlor.function." + name);
                     }
                 }
             }
@@ -237,7 +234,7 @@ public class MinecraftActivityHandler {
             try {
                 itemName = activity.getString(activity.getResources().getIdentifier(itemName, "string", activity.getPackageName()));
             } catch (Exception e) {
-                Log.e(TAG, "Function translation not found: circlor2.function." + itemName);
+                Log.e(TAG, "Function translation not found: circlor.function." + itemName);
             }
         }
         LinearLayout itemLayout = null;
@@ -572,7 +569,7 @@ public class MinecraftActivityHandler {
                 }
             }
         } catch (Exception e) {
-            Log.e(TAG, "Function name not found: circlor2.function." + itemName);
+            Log.e(TAG, "Function name not found: circlor.function." + itemName);
         }
         if (!item.hasKey("description")) {
             try {
@@ -607,8 +604,7 @@ public class MinecraftActivityHandler {
     }
 
     static void loadFloatingViews() {
-        JSONArray supportedVersions = new JSONArray(Utils.readStringFromAssets(activity, "circlor2/supported_versions.json"));
-        if (!supportedVersions.hasValue(Global.getMinecraftVersion())){
+        if (!Global.getMinecraftVersion().equals(Global.SUPPORTED_VERSION)){
             if (!(Global.fakeActivityEnabled && Build.VERSION.SDK_INT <= 27)) {
                 return;
             }

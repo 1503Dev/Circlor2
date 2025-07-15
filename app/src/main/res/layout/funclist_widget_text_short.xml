@@ -9,7 +9,7 @@
     android:layout_height="24dp">
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="24dp"
         android:orientation="vertical"
         android:gravity="center_vertical"

@@ -1,4 +1,4 @@
-package dev1503.circlor2;
+package dev1503.circlor;
 
 import android.content.Context;
 import android.content.pm.PackageManager;
@@ -6,19 +6,19 @@ import android.util.Log;
 
 import java.util.ArrayList;
 
-import dev1503.circlor2.utils.Config;
-import dev1503.circlor2.utils.Utils;
-import tc.jsin.JSONObject;
+import dev1503.circloralpha.utils.Config;
+import dev1503.circloralpha.utils.Utils;
 
 public class Global {
     static final String TAG = "Java/Global";
 
     public static Context context;
-    static Config conf;
+    public static Config conf;
     static PackageManager pm;
     public static String minecraftNativeLibPath;
 
     static final String DEFAULT_MINECRAFT_PACKAGE_NAME = "com.mojang.minecraftpe";
+    public static final String SUPPORTED_VERSION = "1.16.201.01";
     public static final boolean fakeActivityEnabled = true;
 
     public static void setContext(Context ctx) {
@@ -34,6 +34,7 @@ public class Global {
         conf.put("minecraft_package_name", packageName);
     }
     public static String getMinecraftVersion() {
+        Log.d(TAG, "getMinecraftVersion");
         try {
             return pm.getPackageInfo(getMinecraftPackageName(), 0).versionName;
         } catch (PackageManager.NameNotFoundException e) {
@@ -42,20 +43,11 @@ public class Global {
     }
     public static String[] getRequiredSOs() {
         Log.d(TAG, minecraftNativeLibPath);
-        /*System.loadLibrary("c++_shared");
-        try {
-            System.load(minecraftNativeLibPath + "/libfmod.so");
-            System.load(minecraftNativeLibPath + "/libminecraftpe.so");
-        } catch (UnsatisfiedLinkError e) {
-            Log.e(TAG, "加载 libfmod.so 或 libminecraftpe.so 失败");
-            return new String[0];
-        }
-        System.loadLibrary("circlor2");*/
         ArrayList<String> soList = new ArrayList<>();
         soList.add("c++_shared");
         soList.add("fmod");
         soList.add("minecraftpe");
-        soList.add("circlor2");
+        soList.add("circlor");
         return soList.toArray(new String[0]);
     }
     public static String getMinecraftABI() {

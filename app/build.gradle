@@ -3,16 +3,16 @@ plugins {
 }
 
 android {
-    namespace 'dev1503.circlor2'
+    namespace 'dev1503.circloralpha'
     compileSdk 35
 
     defaultConfig {
-        applicationId "dev1503.circlor2"
+        applicationId "dev1503.circloralpha"
         minSdk 26
         //noinspection ExpiredTargetSdkVersion
         targetSdk 28
         versionCode 1503
-        versionName "0.1.1"
+        versionName "0.1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         externalNativeBuild {

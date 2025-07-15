@@ -10,17 +10,10 @@
 #endif
 
 void Actor::setPos(Vec3 &vec3) {
-    if (isMinecraftVersion1_16()) {
-        setPos_t func = (setPos_t) getMinecraftFunction("Actor::setPos");
-        if (func && mc_isInGame) {
-            func(this, &vec3);
-        }
-    } else {
-        setPos_t func = reinterpret_cast<setPos_t>(getMCFuncAddr("Actor::setPos"));
-        if (mc_isInGame) {
-            func(this, &vec3);
-            LOGD("setPos: %f, %f, %f", vec3.x, vec3.y, vec3.z);
-        }
+    setPos_t func = reinterpret_cast<setPos_t>(getMCFuncAddr("Actor::setPos"));
+    if (mc_isInGame) {
+        func(this, &vec3);
+        LOGD("setPos: %f, %f, %f", vec3.x, vec3.y, vec3.z);
     }
 }
 

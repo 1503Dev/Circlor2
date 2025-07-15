@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.22.1)
-project("circlor2")
+project("circlor")
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
@@ -24,7 +24,7 @@ add_library(${CMAKE_PROJECT_NAME} SHARED
         mc/Actor.cpp
         mc/GameMode.cpp
         global.cpp
-        Circlor2.cpp
+        Circlor.cpp
 )
 target_link_libraries(${CMAKE_PROJECT_NAME}
         android

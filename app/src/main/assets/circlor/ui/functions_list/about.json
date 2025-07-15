@@ -2,6 +2,7 @@
     "name": "about",
     "icon": "ic_info",
     "index": 600,
+    "hidden": true,
     "items": [
         {
             "name": "Author",

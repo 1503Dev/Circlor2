@@ -64,7 +64,7 @@
             android:theme="@style/Theme.Circlor2"/>
         <!--suppress AndroidDomInspection -->
         <activity
-            android:name=".MinecraftActivity"
+            android:name="dev1503.circlor.MinecraftActivity"
             android:hasCode="true"
             android:alwaysRetainTaskState="true"
             android:configChanges="fontScale|density|smallestScreenSize|screenSize|uiMode|screenLayout|orientation|navigation|keyboardHidden|keyboard|touchscreen|locale|mnc|mcc"
@@ -77,7 +77,7 @@
             tools:ignore="DiscouragedApi,HardcodedDebugMode,MissingClass">
             <meta-data
                 android:name="android.app.lib_name"
-                android:value="circlor2" />
+                android:value="circlor" />
             <intent-filter>
                 <!--<action android:name="android.intent.action.VIEW" />
                 <category android:name="android.intent.category.DEFAULT" />-->
@@ -148,7 +148,7 @@
             tools:ignore="MissingClass" /> <!-- 文件提供者 -->
         <provider
             android:name="androidx.core.content.FileProvider"
-            android:authorities="dev1503.circlor2.fileprovider"
+            android:authorities="dev1503.circloralpha.fileprovider"
             android:exported="false"
             android:grantUriPermissions="true">
             <meta-data

@@ -1,25 +1,18 @@
-package dev1503.circlor2;
+package dev1503.circloralpha;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
-import android.os.Build;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
-import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.WindowManager;
-import android.widget.EditText;
 import android.widget.FrameLayout;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -27,16 +20,14 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.textfield.TextInputEditText;
 
-import java.util.Objects;
-
-import dev1503.circlor2.utils.Utils;
+import dev1503.circlor.Global;
+import dev1503.circloralpha.utils.Utils;
 import eightbitlab.com.blurview.BlurView;
 import tc.jsin.JSONArray;
-import tc.jsin.JSONObject;
 
 public class MainActivity extends AppCompatActivity {
     static final String TAG = "Java/MainActivity";
-    static final boolean AUTO_LAUNCH = true;
+    static final boolean AUTO_LAUNCH = false;
 
     public static MainActivity self;
     PackageManager pm;
@@ -118,9 +109,8 @@ public class MainActivity extends AppCompatActivity {
                     Toast.makeText(self, "MinecraftPE 不是 arm64-v8a 版本", Toast.LENGTH_SHORT).show();
                     return;
                 }
-                JSONArray supportedVersions = new JSONArray(Utils.readStringFromAssets(self, "circlor2/supported_versions.json"));
-                if (!supportedVersions.hasValue(Global.getMinecraftVersion())){
-                    Toast.makeText(self, "不兼容的 MinecraftPE 版本: " + Global.getMinecraftVersion() + "\n悬浮窗将不会被加载", Toast.LENGTH_SHORT).show();
+                if (!Global.SUPPORTED_VERSION.equals(Global.getMinecraftVersion())){
+                    Toast.makeText(self, "不兼容的 MinecraftPE 版本: " + Global.getMinecraftVersion() + "\n悬浮窗将不会被加载，请使用 " + Global.SUPPORTED_VERSION, Toast.LENGTH_SHORT).show();
                 }
 
                 Intent intent = new Intent(self, PrelaunchActivity.class);

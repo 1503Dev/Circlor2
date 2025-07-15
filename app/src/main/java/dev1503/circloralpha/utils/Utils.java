@@ -1,18 +1,11 @@
-package dev1503.circlor2.utils;
+package dev1503.circloralpha.utils;
 
 import android.app.Activity;
-import android.app.Dialog;
 import android.content.Context;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
 import android.graphics.drawable.ColorDrawable;
-import android.os.Build;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.EditText;
-
-import androidx.appcompat.app.AlertDialog;
 
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
@@ -25,9 +18,8 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.Objects;
 
-import dev1503.circlor2.Global;
-import dev1503.circlor2.MainActivity;
-import dev1503.circlor2.R;
+import dev1503.circloralpha.MainActivity;
+import dev1503.circloralpha.R;
 
 public class Utils {
     static Activity activity;

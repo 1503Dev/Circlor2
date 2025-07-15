@@ -1,11 +1,10 @@
-package dev1503.circlor2;
+package dev1503.circloralpha;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
 import android.net.Uri;
-import android.os.Build;
 import android.view.View;
 
 import androidx.appcompat.widget.AppCompatEditText;
@@ -13,13 +12,13 @@ import androidx.appcompat.widget.AppCompatEditText;
 import com.google.android.material.materialswitch.MaterialSwitch;
 import com.google.android.material.slider.Slider;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
-import java.util.concurrent.atomic.AtomicReference;
 
-import dev1503.circlor2.utils.Utils;
+import dev1503.circlor.JNI;
+import dev1503.circlor.MinecraftActivityHandler;
+import dev1503.circloralpha.utils.Utils;
 
 public class FunctionHandler {
     static final String TAG = "Java/FunctionHandler";

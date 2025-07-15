@@ -24,24 +24,7 @@ LocalPlayer *mc_localPlayer = nullptr;
 bool mc_isInGame = false;
 unsigned char mc_gameMode_destroyBlock_flag = 0;
 
-void *getMinecraftFunction(char *name) {
-    if (((std::string)name).find("::") != std::string::npos) {
-        name = (char *)getMangledName(name).c_str();
-    }
-    void *handle = dlopen("libminecraftpe.so", RTLD_LAZY | RTLD_NOLOAD);
-    if (!handle) {
-        return nullptr;
-    }
-    void *result;
-    void *symbol = dlsym(handle, name);
-    result = symbol;
-    dlclose(handle);
-    return result;
-}
 uintptr_t getMinecraftFunction(std::string name) {
-    if (name.find("::") != std::string::npos) {
-        name = getMangledName(name);
-    }
     void *handle = dlopen("libminecraftpe.so", RTLD_LAZY | RTLD_NOLOAD);
     if (!handle) {
         return 0;
@@ -84,32 +67,10 @@ uintptr_t getMinecraftBase() {
     return s_minecraft_base;
 }
 
-std::string getMangledName(const char *name){
-    if (mcFunctions.find(name) != mcFunctions.end()) {
-        std::string rez = mcFunctions[name];
-        LOGD("getMangledName: %s -> %s", name, rez.c_str());
-        return rez;
-    }
-    LOGE("getMangledName: %s -> not found", name);
-    return "";
-}
-std::string getMangledName(std::string aName){
-    char *name = (char *)aName.c_str();
-    if (mcFunctions.find(name) != mcFunctions.end()) {
-        std::string rez = mcFunctions[name];
-        LOGD("getMangledName: %s -> %s", name, rez.c_str());
-        return rez;
-    }
-    LOGE("getMangledName: %s -> not found", name);
-    return "";
-}
-
 long getOffset(const char *name) {
-    if (mcFunctionsOffset.find(name)!= mcFunctionsOffset.end()) {
-        if (mcFunctionsOffset[name].find(MC_VERSION)!= mcFunctionsOffset[name].end()) {
-            LOGD("getOffset: %s", name);
-            return mcFunctionsOffset[name][MC_VERSION] - getBaseOffset();
-        }
+    if (mcFunctions.find(name)!= mcFunctions.end()) {
+        LOGD("getOffset: %s", name);
+        return mcFunctions[name] - getBaseOffset();
     }
     return 0;
 }
@@ -118,10 +79,8 @@ uintptr_t getBaseOffset() {
     if (s_base_offset) {
         return s_base_offset;
     }
-    if (mcFunctionsOffset["JNI_OnLoad"].find(MC_VERSION) != mcFunctionsOffset["JNI_OnLoad"].end()) {
-        s_base_offset = getMinecraftBase() + mcFunctionsOffset["JNI_OnLoad"][MC_VERSION] - getMinecraftFunction("JNI_OnLoad");
-        LOGD("MC base offset: %lx", s_base_offset);
-    }
+    s_base_offset = getMinecraftBase() + mcFunctions["JNI_OnLoad"] - getMinecraftFunction("JNI_OnLoad");
+    LOGD("MC base offset: %lx", s_base_offset);
     return s_base_offset;
 }
 uintptr_t getMCFuncAddr(const std::string& name) {

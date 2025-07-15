@@ -1,8 +1,6 @@
 # Circlor2
 A mod for Minecraft: PE
 
-# 由于 MCPE 把 NativeActivity 换成了 GameActivity，暂时停止维护
-
 本工具底层原理与 Toolbox for Minecraft: PE 类似，但实现方法不同
 
 ## 下载
@@ -11,7 +9,7 @@ A mod for Minecraft: PE
 
 ## Circlor2 目前作用于哪个 Minecraft: PE 版本
 - 0.1.1
-  - 无，预计1.21.72
+  - 无
 
 - 0.1.0
   - 1.16.0 ~ 1.16.101
@@ -24,8 +22,8 @@ A mod for Minecraft: PE
 ## 特别鸣谢
 - 白无
 - [稽静小白](https://github.com/guiwow-wuxuchun-vape)
-- 鸽子小白
-- [神墨](https://github.com/SMlc666)
+- ProHaxMaked (鸽子小白)
+- [SM](https://github.com/SMlc666)
 
 ## 开放源代码许可
 - [libminecraftpe.so-ida-analysis](https://github.com/1503Dev/libminecraftpe.so-ida-analysis/) - MIT License

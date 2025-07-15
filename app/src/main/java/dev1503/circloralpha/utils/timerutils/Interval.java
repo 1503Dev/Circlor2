@@ -1,4 +1,4 @@
-package dev1503.circlor2.utils.timerutils;
+package dev1503.circloralpha.utils.timerutils;
 
 import android.os.Handler;
 

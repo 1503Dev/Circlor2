@@ -1,4 +1,4 @@
-package dev1503.circlor2;
+package dev1503.circloralpha;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -35,11 +35,14 @@ import java.util.concurrent.Executors;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
 
+import dev1503.circlor.Global;
+
 public class PrelaunchActivity extends Activity {
     static final String TAG = "Java/PrelaunchActivity";
 
     private static final String MC_PACKAGE_NAME = Global.getMinecraftPackageName();
-    private static final String LAUNCHER_DEX_NAME = "core.dex";
+    private static final String LAUNCHER_DEX_NAME = "circlor/core.dex";
+    static final String LOCAL_LAUNCHER_DEX_NAME = "core.dex";
 
     public static TextView textView;
 
@@ -102,6 +105,7 @@ public class PrelaunchActivity extends Activity {
                         }
                         // self.finish();
                     } else {
+//                        throw new RuntimeException(e);
                         Logger.e("加载失败: " + e.getClass().toString());
                     }
                 }
@@ -138,7 +142,7 @@ public class PrelaunchActivity extends Activity {
     private void processDexFiles(final ApplicationInfo mcInfo, File cacheDexDir,  Object pathList) throws Exception {
         Logger.i("Patching dex files");
         Method addDexPath = pathList.getClass().getDeclaredMethod("addDexPath", String.class, File.class);
-        final File launcherDex = new File(cacheDexDir, LAUNCHER_DEX_NAME);
+        final File launcherDex = new File(cacheDexDir, LOCAL_LAUNCHER_DEX_NAME);
 
         copyFile(getAssets().open(LAUNCHER_DEX_NAME), launcherDex);
         Log.i(TAG, "Copied " + LAUNCHER_DEX_NAME + " to " + launcherDex.getAbsolutePath());
@@ -165,6 +169,7 @@ public class PrelaunchActivity extends Activity {
             }
         }
         Logger.i("Dex files patched");
+
     }
 
 
@@ -181,7 +186,7 @@ public class PrelaunchActivity extends Activity {
 
     private void launchMinecraft(ApplicationInfo applicationInfo) throws ClassNotFoundException {
         try {
-            Class<?> launcherClass = getClassLoader().loadClass("dev1503.circlor2.MinecraftActivity");
+            Class<?> launcherClass = getClassLoader().loadClass("dev1503.circlor.MinecraftActivity");
             if (launcherClass == null) {
                 throw new ClassNotFoundException("MinecraftActivity not found");
             }

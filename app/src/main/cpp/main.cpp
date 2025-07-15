@@ -12,7 +12,7 @@
 #include "bytehook.h"
 #include <android/asset_manager.h>
 #include <android/asset_manager_jni.h>
-#include "Circlor2.h"
+#include "Circlor.h"
 
 
 #include "mc/GuiData.h"
@@ -33,12 +33,6 @@ static void (*android_main_minecraft)(struct android_app *app);
 static void (*ANativeActivity_onCreate_minecraft)(ANativeActivity *activity, void *savedState, size_t savedStateSize);
 
 static void initHook();
-
-extern "C" void android_main(struct android_app *app) {
-    LOGD("+android_main+");
-    android_main_minecraft(app);
-    LOGD("-android_main-");
-}
 
 static Actor::setPos_t O_Actor_setPos = nullptr;
 static GameMode::destroyBlock_t O_GameMode_destroyBlock = nullptr;
@@ -155,23 +149,15 @@ void initHook() {
         }
     }*/
     hookStubs.clear();
-    if (isMinecraftVersion1_16()) {
-        Circlor2::hook("ClientInstance::_startLeaveGame", (void*)&H_ClientInstance__startLeaveGame);
-        Circlor2::hook("GameMode::attack", (void*)&H_GameMode_attack);
-        Circlor2::hook("LocalPlayer::getPickRange", (void*)&H_LocalPlayer_getPickRange);
-        Circlor2::hook("LocalPlayer::setPos", (void*)&H_LocalPlayer_setPos);
-        Circlor2::hook("MinecraftGame::update",(void*)&H_MinecraftGame_update);
-    } else {
-        Circlor2::hook(getOffset("Actor::setPos"), (void*)&H_Actor_setPos, (void**)&O_Actor_setPos);
-        Circlor2::hook(getOffset("Actor::teleportTo"), (void*)&H_Actor_teleportTo);
-        Circlor2::hook(getOffset("GameMode::destroyBlock"), (void*)&H_GameMode_destroyBlock, (void**)&O_GameMode_destroyBlock);
-        Circlor2::hook(getOffset("Level::startLeaveGame"), (void*)&H_Level_startLeaveGame, (void**)&O_Level_startLeaveGame);
-        Circlor2::hook(getOffset("LocalPlayer::神秘初始化函数"), (void*)&H_LocalPlayer_神秘初始化函数);
-        Circlor2::hook(getOffset("MinecraftGame::onClientLevelExit"), (void*)&H_MinecraftGame_onClientLevelExit, (void**)&O_MinecraftGame_onClientLevelExit);
-        Circlor2::hook(getOffset("Player::die"), (void*)&H_Player_die, (void**)&O_Player_die);
+//    Circlor::hook(getOffset("Actor::setPos"), (void*)&H_Actor_setPos, (void**)&O_Actor_setPos);
+//    Circlor::hook(getOffset("Actor::teleportTo"), (void*)&H_Actor_teleportTo);
+//    Circlor::hook(getOffset("GameMode::destroyBlock"), (void*)&H_GameMode_destroyBlock, (void**)&O_GameMode_destroyBlock);
+//    Circlor2::hook(getOffset("Level::startLeaveGame"), (void*)&H_Level_startLeaveGame, (void**)&O_Level_startLeaveGame);
+//    Circlor2::hook(getOffset("LocalPlayer::神秘初始化函数"), (void*)&H_LocalPlayer_神秘初始化函数);
+//    Circlor::hook(getOffset("MinecraftGame::onClientLevelExit"), (void*)&H_MinecraftGame_onClientLevelExit, (void**)&O_MinecraftGame_onClientLevelExit);
+//    Circlor2::hook(getOffset("Player::die"), (void*)&H_Player_die, (void**)&O_Player_die);
 
         // Circlor2::hook(0xA722944 - getBaseOffset(), (void*)&H_test);
-    }
     isFirstHook = false;
 }
 
@@ -193,9 +179,14 @@ JNIEXPORT jint JNI_OnLoad(JavaVM *vm, void *reserved) {
     LOGD("-JNI_OnLoad-");
     return JNI_VERSION_1_6;
 }
+JNIEXPORT jint android_main(struct android_app *state) {
+    LOGD("+android_main+");
+    android_main_minecraft(state);
+    LOGD("-android_main-");
+}
 extern "C"
 JNIEXPORT jboolean JNICALL
-Java_dev1503_circlor2_JNI_isMinecraftFunctionExists(JNIEnv *env, jclass clazz, jstring name) {
+Java_dev1503_circlor_JNI_isMinecraftFunctionExists(JNIEnv *env, jclass clazz, jstring name) {
     const char *functionName = env->GetStringUTFChars(name, nullptr);
     if (functionName == nullptr) {
         return JNI_FALSE;
@@ -218,12 +209,12 @@ Java_dev1503_circlor2_JNI_isMinecraftFunctionExists(JNIEnv *env, jclass clazz, j
 }
 extern "C"
 JNIEXPORT jstring JNICALL
-Java_dev1503_circlor2_JNI_invokeFunction(JNIEnv *env, jclass clazz, jstring path) {
+Java_dev1503_circlor_JNI_invokeFunction(JNIEnv *env, jclass clazz, jstring path) {
     std::string funcPath = env->GetStringUTFChars(path, nullptr);
     if (funcPath == "exp_level_change") {
         if (mc_isInGame){
             if (mc_localPlayer) {
-                mc_localPlayer->addLevels((int)Circlor2::getFunctionValue("exp_level_change_value"));
+                mc_localPlayer->addLevels((int)Circlor::getFunctionValue("exp_level_change_value"));
             }
         } else {
             return env->NewStringUTF("not_in_game");
@@ -238,23 +229,23 @@ Java_dev1503_circlor2_JNI_invokeFunction(JNIEnv *env, jclass clazz, jstring path
 }
 extern "C"
 JNIEXPORT void JNICALL
-Java_dev1503_circlor2_JNI_setMinecraftVersion(JNIEnv *env, jclass clazz, jstring version) {
+Java_dev1503_circlor_JNI_setMinecraftVersion(JNIEnv *env, jclass clazz, jstring version) {
     MC_VERSION = env->GetStringUTFChars(version, nullptr);
 }
 extern "C"
 JNIEXPORT void JNICALL
-Java_dev1503_circlor2_JNI_setAssetManager(JNIEnv *env, jclass clazz, jobject assetManagerObj) {
+Java_dev1503_circlor_JNI_setAssetManager(JNIEnv *env, jclass clazz, jobject assetManagerObj) {
     // assetManager = AAssetManager_fromJava(env, assetManagerObj);
     // drawText("114514",100,100);
 }
 extern "C"
 JNIEXPORT jboolean JNICALL
-Java_dev1503_circlor2_JNI_isInGame(JNIEnv *env, jclass clazz) {
+Java_dev1503_circlor_JNI_isInGame(JNIEnv *env, jclass clazz) {
     return mc_isInGame;
 }
 extern "C"
 JNIEXPORT void JNICALL
-Java_dev1503_circlor2_JNI_mc_1teleport(JNIEnv *env, jclass clazz, jfloat x, jfloat y, jfloat z) {
+Java_dev1503_circlor_JNI_mc_1teleport(JNIEnv *env, jclass clazz, jfloat x, jfloat y, jfloat z) {
     y = y + 2;
     if (mc_isInGame) {
         /*if (mcVersionIs("1.21.51.02")) {
@@ -267,23 +258,23 @@ Java_dev1503_circlor2_JNI_mc_1teleport(JNIEnv *env, jclass clazz, jfloat x, jflo
 }
 extern "C"
 JNIEXPORT jdouble JNICALL
-Java_dev1503_circlor2_JNI_getFunctionValue(JNIEnv *env, jclass clazz, jstring path) {
-    return Circlor2::getFunctionValue(env->GetStringUTFChars(path, nullptr));
+Java_dev1503_circlor_JNI_getFunctionValue(JNIEnv *env, jclass clazz, jstring path) {
+    return Circlor::getFunctionValue(env->GetStringUTFChars(path, nullptr));
 }
 extern "C"
 JNIEXPORT jstring JNICALL
-Java_dev1503_circlor2_JNI_getFunctionValueString(JNIEnv *env, jclass clazz, jstring path) {
-    return env->NewStringUTF(Circlor2::getFunctionStringValue(env->GetStringUTFChars(path, nullptr)).c_str());
+Java_dev1503_circlor_JNI_getFunctionValueString(JNIEnv *env, jclass clazz, jstring path) {
+    return env->NewStringUTF(Circlor::getFunctionStringValue(env->GetStringUTFChars(path, nullptr)).c_str());
 }
 extern "C"
 JNIEXPORT void JNICALL
-Java_dev1503_circlor2_JNI_setFunctionValue(JNIEnv *env, jclass clazz, jstring path, jdouble value) {
-    Circlor2::setFunctionValue(env->GetStringUTFChars(path, nullptr), value);
+Java_dev1503_circlor_JNI_setFunctionValue(JNIEnv *env, jclass clazz, jstring path, jdouble value) {
+    Circlor::setFunctionValue(env->GetStringUTFChars(path, nullptr), value);
 }
 extern "C"
 JNIEXPORT void JNICALL
-Java_dev1503_circlor2_JNI_setFunctionValueString(JNIEnv *env, jclass clazz, jstring path,
+Java_dev1503_circlor_JNI_setFunctionValueString(JNIEnv *env, jclass clazz, jstring path,
                                                  jstring value) {
-    Circlor2::setFunctionStringValue(env->GetStringUTFChars(path, nullptr),
-                                     env->GetStringUTFChars(value, nullptr));
+    Circlor::setFunctionStringValue(env->GetStringUTFChars(path, nullptr),
+                                    env->GetStringUTFChars(value, nullptr));
 }
