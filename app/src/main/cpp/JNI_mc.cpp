@@ -14,7 +14,7 @@ JNIEXPORT void JNICALL
 Java_dev1503_circlor_mc_LocalPlayer_setPos(JNIEnv *env, jclass clazz, jfloat x, jfloat y,
                                            jfloat z) {
     if (isInGame() && clientInstance->getLocalPlayer()) {
-        clientInstance->getLocalPlayer()->setPos(new Vec3(x + 0.5, y + 1.5, z + 0.5));
+        clientInstance->getLocalPlayer()->setPos(new Vec3(x + 0.5f, y + 1.62f, z + 0.5f));
     }
 }
 extern "C"
@@ -28,8 +28,12 @@ Java_dev1503_circlor_mc_LocalPlayer__1getPos(JNIEnv *env, jclass clazz) {
     jfloatArray array = env->NewFloatArray(3);
 
     if (isInGame() && clientInstance->getLocalPlayer() != nullptr) {
-        Vec3 pos = clientInstance->getLocalPlayer()->getPos();
-        jfloat posArray[3] = {pos.x, pos.y, pos.z};
+        Vec3 *pos = clientInstance->getLocalPlayer()->getPos();
+        Vec3 _pos = *pos;
+        _pos.x = _pos.x - 0.5f;
+        _pos.y = _pos.y - 1.62001f;
+        _pos.z = _pos.z - 0.5f;
+        jfloat posArray[3] = {_pos.x, _pos.y, _pos.z};
         env->SetFloatArrayRegion(array, 0, 3, posArray);
         return array;
     }

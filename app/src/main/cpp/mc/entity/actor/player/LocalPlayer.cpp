@@ -13,12 +13,22 @@ float LocalPlayer::getPickRange() {
 }
 
 void LocalPlayer::addLevels(int levels) {
-
+    addLevels_t addLevels = (addLevels_t) getMCFuncPtr("LocalPlayer::addLevels");
+    if (addLevels) {
+        addLevels(this, levels);
+    }
 }
 
 void LocalPlayer::setPos(const Vec3 *position) {
     setPos_t setPos = (setPos_t) getMCFuncPtr("LocalPlayer::setPos");
     if (setPos) {
         setPos(this, position);
+    }
+}
+
+void LocalPlayer::setPlayerGameType(GameType gameType) {
+    setPlayerGameType_t setPlayerGameType = (setPlayerGameType_t) getMCFuncPtr("LocalPlayer::setPlayerGameType");
+    if (setPlayerGameType) {
+        setPlayerGameType(this, gameType);
     }
 }

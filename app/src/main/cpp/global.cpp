@@ -2,8 +2,6 @@
 // Created by TheChuan1503 on 2025/4/26.
 //
 #include <dlfcn.h>
-#include <bytehook.h>
-#include <shadowhook.h>
 
 #define TAG "Native/Global"
 #include "global.h"
@@ -14,6 +12,7 @@ std::map<std::string, std::string> circlor2FunctionsStringSave;
 std::vector<void*> hookStubs = {};
 
 ClientInstance *clientInstance = nullptr;
+Minecraft *minecraft = nullptr;
 
 uintptr_t getMinecraftFunction(std::string name) {
     void *handle = dlopen("libminecraftpe.so", RTLD_LAZY | RTLD_NOLOAD);

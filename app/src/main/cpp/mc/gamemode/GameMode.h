@@ -5,13 +5,13 @@
 #ifndef CIRCLOR2_GAMEMODE_H
 #define CIRCLOR2_GAMEMODE_H
 
-#include "level/BlockPos.h"
+#include "../level/BlockPos.h"
 
 class GameMode {
 public:
-    typedef void (*destroyBlock_t)(GameMode *gameMode, const BlockPos *, unsigned char);
+    typedef void (*destroyBlock_t)(GameMode*, const BlockPos *, unsigned char);
+
     void destroyBlock(BlockPos pos, unsigned char flag);
 };
-
 
 #endif //CIRCLOR2_GAMEMODE_H

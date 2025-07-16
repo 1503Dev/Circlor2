@@ -6,7 +6,7 @@
 
 #ifndef GLOBAL_H
 #define TAG "Native/GameMode"
-#include "../global.h"
+#include "../../global.h"
 #endif
 
 void GameMode::destroyBlock(BlockPos pos, unsigned char flag) {

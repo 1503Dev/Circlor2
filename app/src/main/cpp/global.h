@@ -9,6 +9,7 @@
 #include <android/log.h>
 #include <string>
 #include "mc/client/ClientInstance.h"
+#include "mc/client/Minecraft.h"
 #include <map>
 
 extern JavaVM *jvm;
@@ -20,6 +21,7 @@ extern bool isFirstHook;
 extern std::vector<void*> hookStubs;
 
 extern ClientInstance *clientInstance;
+extern Minecraft *minecraft;
 
 #define LOGD(...) __android_log_print(ANDROID_LOG_DEBUG, TAG, __VA_ARGS__)
 #define LOGE(...) __android_log_print(ANDROID_LOG_ERROR, TAG, __VA_ARGS__)

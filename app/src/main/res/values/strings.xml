@@ -16,4 +16,10 @@
     <string name="game">游戏</string>
     <string name="about">关于</string>
     <string name="version_name">0.1.0</string>
+    <string name="s_gamemode">游戏模式</string>
+    <string name="s_gamemode_survival">生存</string>
+    <string name="s_gamemode_creative">创造</string>
+    <string name="s_gamemode_adventure">冒险</string>
+    <string name="s_disable_destroy_block">禁止破坏方块</string>
+    <string name="s_only_survival_mode">仅生存模式</string>
 </resources>

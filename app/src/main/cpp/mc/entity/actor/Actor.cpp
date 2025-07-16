@@ -29,10 +29,10 @@ void Actor::teleportTo(Vec3 pos, bool shouldStopRiding, int cause, int sourceEnt
     }
 }
 
-Vec3 Actor::getPos() {
+Vec3 *Actor::getPos() {
     getPos_t getPos = (getPos_t ) getMCFuncPtr("Actor::getPos");
     if (getPos) {
         return getPos(this);
     }
-    return Vec3();
+    return nullptr;
 }

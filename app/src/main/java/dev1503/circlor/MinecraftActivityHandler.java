@@ -36,8 +36,6 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.AppCompatEditText;
 
-import com.bytedance.android.bytehook.ByteHook;
-import com.bytedance.shadowhook.ShadowHook;
 import com.google.android.material.materialswitch.MaterialSwitch;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.slider.Slider;

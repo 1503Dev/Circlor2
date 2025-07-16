@@ -22,6 +22,33 @@
                     "value": 1
                 }
             ]
+        },
+        {
+            "name": "s_gamemode",
+            "widget_type": "collapse",
+            "items": [
+                {
+                    "name": "s_gamemode_survival",
+                    "widget_type": "action",
+                    "path": "gamemode_change/s"
+                },
+                {
+                    "name": "s_gamemode_creative",
+                    "widget_type": "action",
+                    "path": "gamemode_change/c"
+                },
+                {
+                    "name": "s_gamemode_adventure",
+                    "widget_type": "action",
+                    "path": "gamemode_change/a"
+                }
+            ]
+        },
+        {
+            "name": "s_disable_destroy_block",
+            "widget_type": "toggle",
+            "path": "destroy_block_disabled",
+            "description": "s_only_survival_mode"
         }
     ]
 }

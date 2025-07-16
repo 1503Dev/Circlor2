@@ -13,4 +13,11 @@ public class Vec3 {
     public Vec3() {
         this(0, 0, 0);
     }
+
+    public Vec3 toFixed(){
+        this.x = Math.round(this.x * 100) / 100f;
+        this.y = Math.round(this.y * 100) / 100f;
+        this.z = Math.round(this.z * 100) / 100f;
+        return this;
+    }
 }

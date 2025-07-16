@@ -8,8 +8,6 @@
 #include <sys/mman.h>
 #include <unistd.h>
 #include <mutex>
-#include <shadowhook.h>
-#include "bytehook.h"
 #include <android/asset_manager.h>
 #include <android/asset_manager_jni.h>
 #include "Circlor.h"
@@ -17,7 +15,7 @@
 
 #include "mc/client/gui/GuiData.h"
 #include "mc/client/ClientInstance.h"
-#include "mc/GameMode.h"
+#include "mc/gamemode/GameMode.h"
 #include "mc/entity/actor/Actor.h"
 #include "mc/client/MinecraftGame.h"
 #include "mc/entity/actor/player/Player.h"
@@ -60,7 +58,6 @@ JNIEXPORT jint JNI_OnLoad(JavaVM *vm, void *reserved) {
     JNIEnv *env;
     vm->GetEnv((void **) &env, JNI_VERSION_1_6);
     initFunctionTable(env);
-    initHookLib(env);
     LOGD("-JNI_OnLoad-");
     return JNI_VERSION_1_6;
 }
@@ -97,21 +94,7 @@ extern "C"
 JNIEXPORT jstring JNICALL
 Java_dev1503_circlor_JNI_invokeFunction(JNIEnv *env, jclass clazz, jstring path) {
     std::string funcPath = env->GetStringUTFChars(path, nullptr);
-    if (funcPath == "exp_level_change") {
-        if (isInGame()){
-//            if (mc_localPlayer) {
-//                mc_localPlayer->addLevels((int)Circlor::getFunctionValue("exp_level_change_value"));
-//            }
-        } else {
-            return env->NewStringUTF("not_in_game");
-        }
-    } else if (funcPath == "testcall") {
-//        if (mc_gameMode) {
-//            mc_gameMode->destroyBlock(BlockPos(0, 100, 0), mc_gameMode_destroyBlock_flag);
-//        }
-        return env->NewStringUTF("testcalled");
-    }
-    return env->NewStringUTF("");
+    return env->NewStringUTF(Circlor::invoke(funcPath).c_str());
 }
 extern "C"
 JNIEXPORT void JNICALL
@@ -199,11 +182,4 @@ static void initFunctionTable(JNIEnv *env) {
     jlongArray functionAddresses = (jlongArray)env->CallStaticObjectMethod(jniClass, getFunctionAddresses);
 
     setFunctionTable(env, functionNames, functionAddresses);
-}
-static void initHookLib(JNIEnv *env) {
-    LOGD("initHookLib");
-    jvm->GetEnv((void **) &env, JNI_VERSION_1_6);
-    jclass clazz = env->FindClass("dev1503/circlor/JNI");
-    jmethodID initHook = env->GetStaticMethodID(clazz, "initHook", "()V");
-    env->CallStaticVoidMethod(clazz, initHook);
 }

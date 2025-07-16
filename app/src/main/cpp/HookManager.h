@@ -9,6 +9,10 @@
 
 class HookManager {
 public:
+    static void hook(const char *name, void *hook);
+    static void hook(const char *name, void *hook, void **original);
+    static void hook(long target, void *hook);
+    static void hook(long target, void *hook, void **original);
     static void init();
 };
 

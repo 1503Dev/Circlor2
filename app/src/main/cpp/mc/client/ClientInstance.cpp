@@ -5,7 +5,7 @@
 #include "ClientInstance.h"
 
 #ifndef GLOBAL_H
-#define TAG "Native/MC/ClientInstance"
+#define TAG "Native/ClientInstance"
 #include "../global.h"
 #endif
 

@@ -4,57 +4,10 @@
 
 #include <cstddef>
 #include <string>
-#include <bytehook.h>
-#include <shadowhook.h>
-#include "Gloss.h"
 #include "Circlor.h"
 
-#define TAG "Native/Circlor2"
+#define TAG "Native/Circlor"
 #include "global.h"
-
-void Circlor::hook(const char *name, void *hook) {
-    Circlor::hook(getOffset(name), hook);
-}
-void Circlor::hook(const char *name, void *hook, void **original) {
-    Circlor::hook(getOffset(name), hook, original);
-}
-//void Circlor2::hookAndOverride(const char *name, void *hook) {
-//    if (((std::string )(name)).find("::") != std::string::npos) {
-//        name = getMangledName(name).c_str();
-//    }
-//    bytehook_stub_t rez = bytehook_hook_single(
-//            "libminecraftpe.so",
-//            nullptr,
-//            name,
-//            reinterpret_cast<void *>(hook),
-//            nullptr,
-//            nullptr
-//    );
-//    if (!isFirstHook) return;
-//    if (rez) {
-//        LOGD("ByteHook: Hooked %s", name);
-//    } else {
-//        LOGE("ByteHook: Failed to hook %s", name);
-//    }
-//}
-
-void Circlor::hook(long target, void *hook) {
-    Circlor::hook(target, hook, nullptr);
-}
-
-void Circlor::hook(long target, void *hook, void **original) {
-    void *targetAddr = (void *)((uintptr_t)getMinecraftBase() + target);
-//    void *stub = shadowhook_hook_func_addr(targetAddr, hook, original);
-//    if (!isFirstHook) return;
-//    if (stub) {
-//        LOGD("Hook: Hooked %p", targetAddr);
-//        hookStubs.push_back(stub);
-//    } else {
-//        LOGE("Hook: Failed to hook %p", targetAddr);
-//    }
-    GlossHook(targetAddr, hook, original);
-    LOGD("Hook: Hooked %p", targetAddr);
-}
 
 double Circlor::getFunctionValue(const char *path) {
     if (circlor2FunctionsSave.find(path) != circlor2FunctionsSave.end()) {
@@ -62,20 +15,58 @@ double Circlor::getFunctionValue(const char *path) {
     }
     return 0;
 }
-
+bool Circlor::getFunctionBoolValue(const char *path) {
+    return getFunctionValue(path) != 0;
+}
 std::string Circlor::getFunctionStringValue(const char *path) {
     if (circlor2FunctionsStringSave.find(path)!= circlor2FunctionsStringSave.end()) {
         return circlor2FunctionsStringSave[path];
     }
     return "";
 }
-
 void Circlor::setFunctionValue(const char *path, double value) {
     circlor2FunctionsSave[path] = value;
     LOGD("Set %s to %f", path, value);
 }
-
 void Circlor::setFunctionStringValue(const char *path, const char *value) {
     circlor2FunctionsStringSave[path] = value;
     LOGD("Set %s to %s", path, value);
+}
+
+std::string Circlor::invoke(std::string funcPath) {
+    if (funcPath == "exp_level_change") {
+        if (isInGame() && clientInstance->getLocalPlayer()){
+            clientInstance->getLocalPlayer()->addLevels((int)Circlor::getFunctionValue("exp_level_change_value"));
+        } else {
+            return "not_in_game";
+        }
+    } else if (funcPath == "gamemode_change/s") {
+        if (isInGame() && clientInstance->getLocalPlayer()){
+            clientInstance->getLocalPlayer()->setPlayerGameType(GameType::Survival);
+        } else {
+            return "not_in_game";
+        }
+    } else if (funcPath == "gamemode_change/c") {
+        if (isInGame() && clientInstance->getLocalPlayer()){
+            clientInstance->getLocalPlayer()->setPlayerGameType(GameType::Creative);
+        } else {
+            return "not_in_game";
+        }
+    } else if (funcPath == "gamemode_change/a") {
+        if (isInGame() && clientInstance->getLocalPlayer()){
+            clientInstance->getLocalPlayer()->setPlayerGameType(GameType::Adventure);
+        } else {
+            return "not_in_game";
+        }
+    }
+
+
+
+    else if (funcPath == "testcall") {
+//        if (mc_gameMode) {
+//            mc_gameMode->destroyBlock(BlockPos(0, 100, 0), mc_gameMode_destroyBlock_flag);
+//        }
+        return "testcalled";
+    }
+    return "";
 }
