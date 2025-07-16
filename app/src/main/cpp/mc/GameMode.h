@@ -5,7 +5,7 @@
 #ifndef CIRCLOR2_GAMEMODE_H
 #define CIRCLOR2_GAMEMODE_H
 
-#include "../structs.h"
+#include "level/BlockPos.h"
 
 class GameMode {
 public:

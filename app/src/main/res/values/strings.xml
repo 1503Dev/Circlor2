@@ -15,4 +15,5 @@
     <string name="s_exp_level_change_value">变动量</string>
     <string name="game">游戏</string>
     <string name="about">关于</string>
+    <string name="version_name">0.1.0</string>
 </resources>

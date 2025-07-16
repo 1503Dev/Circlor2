@@ -4,11 +4,11 @@
 
 #ifndef GLOBAL_H
 #define TAG "Native/Player"
-#include "../global.h"
+#include "../../../../global.h"
 #endif
 
 #include "Player.h"
-#include "../structs.h"
+#include "../../../math/Vec3.h"
 
 void Player::teleportTo(Vec3& vec3, bool bool1, int int1, int int2, bool bool2) {
     teleportTo_t func = reinterpret_cast<teleportTo_t>(getMCFuncPtr("Player::teleportTo"));

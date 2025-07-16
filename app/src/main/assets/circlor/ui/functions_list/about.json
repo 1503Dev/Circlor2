@@ -2,7 +2,7 @@
     "name": "about",
     "icon": "ic_info",
     "index": 600,
-    "hidden": true,
+    "hidden": false,
     "items": [
         {
             "name": "Author",
@@ -17,8 +17,8 @@
             "widget_type": "text_short"
         },
         {
-            "name": "https://circlor2.1503dev.top",
-            "path": ":jump_url/https://circlor2.1503dev.top",
+            "name": "https://circloraplha.1503dev.top",
+            "path": ":jump_url/https://circloraplha.1503dev.top",
             "widget_type": "action"
         },
         {
@@ -26,7 +26,7 @@
             "widget_type": "text_short"
         },
         {
-            "name": "0.1.1",
+            "name": "version_name",
             "widget_type": "action"
         },
         {
@@ -39,11 +39,7 @@
                     "text_style": "bold"
                 },
                 {
-                    "name": "稽静小白",
-                    "widget_type": "action"
-                },
-                {
-                    "name": "ProHaxMaked",
+                    "name": "神墨",
                     "widget_type": "action"
                 }
             ]

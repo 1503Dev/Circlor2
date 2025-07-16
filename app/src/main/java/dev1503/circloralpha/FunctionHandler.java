@@ -18,6 +18,9 @@ import java.util.Objects;
 
 import dev1503.circlor.JNI;
 import dev1503.circlor.MinecraftActivityHandler;
+import dev1503.circlor.mc.ClientInstance;
+import dev1503.circlor.mc.LocalPlayer;
+import dev1503.circlor.mc.Vec3;
 import dev1503.circloralpha.utils.Utils;
 
 public class FunctionHandler {
@@ -44,10 +47,11 @@ public class FunctionHandler {
                 System.exit(0);
                 break;
             case "teleport/picker":
-                if (!JNI.isInGame()) {
+                if (!ClientInstance.isInGame()) {
                     return S_NOT_IN_GAME;
                 }
-                Utils.openPositionPicker(JNI::mc_teleport);
+                Vec3 pos = LocalPlayer.getPos();
+                Utils.openPositionPicker(LocalPlayer::setPos, pos.x, pos.y, pos.z);
                 break;
             default:
                 return JNI.invokeFunction(path);

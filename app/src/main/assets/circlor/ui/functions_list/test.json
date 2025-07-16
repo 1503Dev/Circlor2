@@ -2,7 +2,7 @@
     "name": "test",
     "icon": "ic_android",
     "index": 999,
-    "hidden": true,
+    "hidden": false,
     "items": [
         {
             "name": "testcall",

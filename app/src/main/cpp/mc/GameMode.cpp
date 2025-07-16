@@ -11,7 +11,7 @@
 
 void GameMode::destroyBlock(BlockPos pos, unsigned char flag) {
     destroyBlock_t func = (destroyBlock_t) getMCFuncPtr("GameMode::destroyBlock");
-    if (func && mc_isInGame) {
+    if (func && isInGame()) {
         func(this, &pos, flag);
     }
 }

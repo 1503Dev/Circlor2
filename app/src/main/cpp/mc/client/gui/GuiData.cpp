@@ -8,7 +8,7 @@
 
 #define TAG "Native/objects/GuiData"
 
-#include "../global.h"
+#include "../../../global.h"
 
 typedef void* (*displayClientMessage_t)(GuiData*, const std::string&);
 

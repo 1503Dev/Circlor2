@@ -15,6 +15,9 @@
 void Circlor::hook(const char *name, void *hook) {
     Circlor::hook(getOffset(name), hook);
 }
+void Circlor::hook(const char *name, void *hook, void **original) {
+    Circlor::hook(getOffset(name), hook, original);
+}
 //void Circlor2::hookAndOverride(const char *name, void *hook) {
 //    if (((std::string )(name)).find("::") != std::string::npos) {
 //        name = getMangledName(name).c_str();
@@ -41,14 +44,16 @@ void Circlor::hook(long target, void *hook) {
 
 void Circlor::hook(long target, void *hook, void **original) {
     void *targetAddr = (void *)((uintptr_t)getMinecraftBase() + target);
-    void *stub = shadowhook_hook_func_addr(targetAddr, hook, original);// GlossHook(targetAddr, hook, original);
-    if (!isFirstHook) return;
-    if (stub) {
-        LOGD("Hook: Hooked %p", targetAddr);
-        hookStubs.push_back(stub);
-    } else {
-        LOGE("Hook: Failed to hook %p", targetAddr);
-    }
+//    void *stub = shadowhook_hook_func_addr(targetAddr, hook, original);
+//    if (!isFirstHook) return;
+//    if (stub) {
+//        LOGD("Hook: Hooked %p", targetAddr);
+//        hookStubs.push_back(stub);
+//    } else {
+//        LOGE("Hook: Failed to hook %p", targetAddr);
+//    }
+    GlossHook(targetAddr, hook, original);
+    LOGD("Hook: Hooked %p", targetAddr);
 }
 
 double Circlor::getFunctionValue(const char *path) {

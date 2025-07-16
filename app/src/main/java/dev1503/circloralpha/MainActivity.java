@@ -27,7 +27,7 @@ import tc.jsin.JSONArray;
 
 public class MainActivity extends AppCompatActivity {
     static final String TAG = "Java/MainActivity";
-    static final boolean AUTO_LAUNCH = false;
+    static final boolean AUTO_LAUNCH = true;
 
     public static MainActivity self;
     PackageManager pm;

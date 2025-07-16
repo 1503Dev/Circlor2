@@ -16,6 +16,8 @@ import android.view.WindowManager;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import org.json.JSONException;
+
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
 import java.io.File;
@@ -36,12 +38,16 @@ import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
 
 import dev1503.circlor.Global;
+import dev1503.circlor.JNI;
+import dev1503.circloralpha.utils.Utils;
+import tc.jsin.JSONObject;
 
 public class PrelaunchActivity extends Activity {
     static final String TAG = "Java/PrelaunchActivity";
 
     private static final String MC_PACKAGE_NAME = Global.getMinecraftPackageName();
     private static final String LAUNCHER_DEX_NAME = "circlor/core.dex";
+    private static final String PATH_FUNCTION_TABLE = "circlor/function_table.json";
     static final String LOCAL_LAUNCHER_DEX_NAME = "core.dex";
 
     public static TextView textView;
@@ -89,6 +95,7 @@ public class PrelaunchActivity extends Activity {
                     processDexFiles(mcInfo, cacheDexDir, pathList);
                     Global.minecraftNativeLibPath = new File(mcInfo.nativeLibraryDir).getAbsolutePath();
                     processNativeLibraries(mcInfo, pathList);
+                    processFunctionTable();
                     launchMinecraft(mcInfo);
 
                     if (MainActivity.self != null) {
@@ -112,6 +119,35 @@ public class PrelaunchActivity extends Activity {
             }
         });
     }
+
+    private void processFunctionTable() throws JSONException {
+        Logger.i("Processing function table");
+        String json = Utils.readStringFromAssets(self, PATH_FUNCTION_TABLE);
+        JSONObject functionTable = new JSONObject(json);
+        JSONObject functions = functionTable.getJSONObject(Global.SUPPORTED_VERSION + "_arm64-v8a");
+        long[] values = new long[functions.getValues().length];
+        functions.forEach(new JSONObject.ForEachInterface() {
+            @Override
+            public void onEach(String k, Object v, int t, int i) {
+                switch (t) {
+                    case JSONObject.VALUE_TYPE_INT: case JSONObject.VALUE_TYPE_LONG: case JSONObject.VALUE_TYPE_BIG_DECIMAL:
+                        values[i] = ((long) v);
+                        break;
+                    case JSONObject.VALUE_TYPE_STRING:
+                        String str = ((String) v).trim();
+                        if (str.startsWith("0x")) {
+                            values[i] = Long.parseLong(str.substring(2), 16);
+                        } else {
+                            values[i] = Long.parseLong(str, 16);
+                        }
+                        break;
+                }
+            }
+        });
+        JNI.setFunctionTable(functions.getKeys(), values);
+        Logger.i("Function table processed");
+    }
+
     @SuppressLint("SetTextI18n")
     private void handleCacheCleaning( final File cacheDexDir) {
         Logger.i("Cleaning cache");

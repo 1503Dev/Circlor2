@@ -81,10 +81,6 @@ public class MinecraftActivityHandler {
             FunctionHandler.S_NOT_IN_GAME = activity.getString(activity.getResources().getIdentifier("not_in_game", "string", activity.getPackageName()));
         } catch (Exception ignored) {}*/
 
-        ByteHook.init();
-        ShadowHook.init(new ShadowHook.ConfigBuilder()
-                .setMode(ShadowHook.Mode.UNIQUE)
-                .build());
 //        JNI.setMinecraftVersion(Global.getMinecraftVersion());
 //        JNI.setAssetManager(activity.getAssets());
 
@@ -94,7 +90,7 @@ public class MinecraftActivityHandler {
 
         wm = activity.getWindowManager();
         TextView textView = new TextView(context);
-        textView.setText("CirclorAlpha v0.1.0");
+        textView.setText("CirclorAlpha v" + activity.getString(R.string.version_name));
         textView.setTextSize(18);
         textView.setTextColor(0xFFFFFFFF);
         textView.setTypeface(Typeface.MONOSPACE);
@@ -114,7 +110,7 @@ public class MinecraftActivityHandler {
             return;
         }
         try {
-            functionsListLayout = (LinearLayout) LinearLayout.inflate(activity, R.layout.layout_circlor2_overlay_1, null);
+            functionsListLayout = (LinearLayout) LinearLayout.inflate(activity, R.layout.layout_circlor_overlay_1, null);
         } catch (Exception e) {
             Log.e(TAG, "Failed to inflate layout_circlor2_overlay_1", e);
             return;
@@ -569,13 +565,11 @@ public class MinecraftActivityHandler {
                 }
             }
         } catch (Exception e) {
-            Log.e(TAG, "Function name not found: circlor.function." + itemName);
         }
         if (!item.hasKey("description")) {
             try {
                 itemLayout.findViewById(R.id.description).setVisibility(View.GONE);
             } catch (Exception e) {
-                Log.e(TAG, "Function description not found: circlor2.function." + itemName);
             }
         } else {
             String itemDescription = item.getString("description", "");
@@ -583,13 +577,11 @@ public class MinecraftActivityHandler {
                 try {
                     itemDescription = activity.getString(activity.getResources().getIdentifier(itemDescription, "string", activity.getPackageName()));
                 } catch (Exception e) {
-                    Log.e(TAG, "Function translation not found: circlor2.function." + itemName);
                 }
             }
             try {
                 ((TextView) itemLayout.findViewById(R.id.description)).setText(itemDescription);
             } catch (Exception e) {
-                Log.e(TAG, "Function name not found: circlor2.function." + itemName);
             }
         }
         itemLayout.setLayoutParams(new LinearLayout.LayoutParams(
@@ -718,8 +710,20 @@ public class MinecraftActivityHandler {
 
         runOnUI(()->{
             wm.addView(layout, lp);
+//            PopupWindow popupWindow = new PopupWindow(
+//                    layout,                  // 布局视图
+//                    128, // 宽度
+//                    128, // 高度
+//                    true                        // 是否可获取焦点
+//            );
+//            popupWindow.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+//            popupWindow.showAtLocation(
+//                    null,                 // 父视图
+//                    Gravity.CENTER,             // 位置
+//                    0,                          // x偏移
+//                    0                           // y偏移
+//            );
         });
-        // wm.addView(layout, lp);
     }
     static void floatingBall_onClick(View v) {
         if (functionsListLayout != null) {

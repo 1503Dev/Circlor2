@@ -82,17 +82,28 @@ public class Utils {
             return new String[0];
         }
     }
-    public static void openPositionPicker(OnPositionPicked onPositionPicked){
-        /*View bottomSheetView = View.inflate(activity, R.layout.bottomsheet_position_picker, null);
-        BottomSheetDialog bottomSheetDialog = newBottomSheet(bottomSheetView);*/
-        View view = View.inflate(activity, R.layout.dialog_position_picker, null);
-        android.app.AlertDialog dialog = newDialog(view);
+    public static void openPositionPicker(OnPositionPicked onPositionPicked) {
+        openPositionPicker(onPositionPicked, 0, 0, 0);
+    }
+    public static void openPositionPicker(OnPositionPicked onPositionPicked, float dx, float dy, float dz){
+        View view = View.inflate(activity, R.layout.bottomsheet_position_picker, null);
+        BottomSheetDialog bottomSheetDialog = newBottomSheet(view);
+//        View view = View.inflate(activity, R.layout.dialog_position_picker, null);
+//        android.app.AlertDialog dialog = newDialog(view);
 
         MaterialButton actionButton = view.findViewById(R.id.ok);
-        MaterialButton cancelButton = view.findViewById(R.id.cancel);
+//        MaterialButton cancelButton = view.findViewById(R.id.cancel);
         TextInputEditText xEditText = view.findViewById(R.id.x);
         TextInputEditText yEditText = view.findViewById(R.id.y);
         TextInputEditText zEditText = view.findViewById(R.id.z);
+
+        try {
+            xEditText.setText(String.valueOf(dx));
+            yEditText.setText(String.valueOf(dy));
+            zEditText.setText(String.valueOf(dz));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
         actionButton.setOnClickListener(v -> {
             float x = 0, y = 0, z = 0;
@@ -117,20 +128,20 @@ public class Utils {
             if (onPositionPicked != null) {
                 onPositionPicked.onPositionPicked(x, y, z);
             }
-            dialog.cancel();
+            bottomSheetDialog.cancel();
         });
-        cancelButton.setOnClickListener(v -> {
-            dialog.cancel();
-        });
+//        cancelButton.setOnClickListener(v -> {
+//            bottomSheetDialog.cancel();
+//        });
 
-        dialog.show();
+        bottomSheetDialog.show();
     }
     public static interface OnPositionPicked {
         void onPositionPicked(float x, float y, float z);
     }
 
     public static BottomSheetDialog newBottomSheet(View v) {
-        BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(MainActivity.self);
+        BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(activity);
         bottomSheetDialog.setContentView(v);
         bottomSheetDialog.setCancelable(true);
         bottomSheetDialog.setCanceledOnTouchOutside(true);

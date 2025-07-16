@@ -17,14 +17,20 @@ set_target_properties(GlossHook PROPERTIES IMPORTED_LOCATION
 
 add_library(${CMAKE_PROJECT_NAME} SHARED
         main.cpp
-        mc/GuiData.cpp
-        mc/ClientInstance.cpp
-        mc/LocalPlayer.cpp
-        mc/Player.cpp
-        mc/Actor.cpp
+
+        mc/client/ClientInstance.cpp
+        mc/client/gui/GuiData.cpp
+        mc/entity/actor/Actor.cpp
+        mc/entity/actor/player/LocalPlayer.cpp
+        mc/entity/actor/player/Player.cpp
         mc/GameMode.cpp
+        mc/level/BlockPos.cpp
+        mc/math/Vec3.cpp
+
+        HookManager.cpp
         global.cpp
         Circlor.cpp
+        JNI_mc.cpp
 )
 target_link_libraries(${CMAKE_PROJECT_NAME}
         android

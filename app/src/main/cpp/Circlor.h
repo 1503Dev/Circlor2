@@ -9,9 +9,9 @@
 class Circlor {
 public:
     static void hook(const char *name, void *hook);
+    static void hook(const char *name, void *hook, void **original);
     static void hook(long target, void *hook);
     static void hook(long target, void *hook, void **original);
-    static void hookAndOverride(const char *name, void *hook);
 
     static double getFunctionValue(const char *path);
     static void setFunctionValue(const char *path, double value);

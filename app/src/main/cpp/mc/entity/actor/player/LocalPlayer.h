@@ -6,15 +6,16 @@
 #define CIRCLOR2_LOCALPLAYER_H
 
 
-#include "../structs.h"
-#include "Actor.h"
+#include "Player.h"
 
-class LocalPlayer: public Actor{
+class LocalPlayer: public Player{
 public:
     typedef void (*addLevels_t)(void* localPlayer, int levels);
     typedef float (*getPickRange_t)(void* localPlayer);
+
     void addLevels(int levels);
     float getPickRange();
+    void setPos(const Vec3 *);
 };
 
 

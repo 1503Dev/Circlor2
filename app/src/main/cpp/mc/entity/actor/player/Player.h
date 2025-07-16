@@ -5,14 +5,13 @@
 #ifndef CIRCLOR2_PLAYER_H
 #define CIRCLOR2_PLAYER_H
 
-#include "../structs.h"
+#include "../../../math/Vec3.h"
+#include "../Actor.h"
 
-
-class Player {
+class Player: public Actor {
 public:
     typedef void (*teleportTo_t)(Player *player, Vec3&, bool, int, int, bool);
     void teleportTo(Vec3 &, bool, int, int, bool);
 };
-
 
 #endif //CIRCLOR2_PLAYER_H
