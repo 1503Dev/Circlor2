@@ -107,7 +107,7 @@ void HookManager::init() {
     hook("ClientInstance::update", (void*)&H_ClientInstance_update, (void**)&O_ClientInstance_update);
     hook("GameMode::destroyBlock", (void*)&H_GameMode_destroyBlock, (void**)&O_GameMode_destroyBlock);
     hook("GameMode::getMaxPickRange", (void*)&H_GameMode_getMaxPickRange, (void**)&O_GameMode_getMaxPickRange);
-    hook("MobEffectInstance::MobEffectInstance", (void*)&H_MobEffectInstance_MobEffectInstance, (void**)&O_MobEffectInstance_MobEffectInstance);
+//    hook("MobEffectInstance::MobEffectInstance", (void*)&H_MobEffectInstance_MobEffectInstance, (void**)&O_MobEffectInstance_MobEffectInstance);
     hook("Level::tick", (void*)&H_Level_tick, (void**)&O_Level_tick);
     hook("LocalPlayer::getPickRange", (void*)&H_LocalPlayer_getPickRange, (void**)&O_LocalPlayer_getPickRange);
 }

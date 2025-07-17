@@ -6,6 +6,8 @@
 #define CIRCLOR2_CIRCLOR_H
 
 
+#include "mc/entity/actor/Actor.h"
+
 class Circlor {
 public:
     static double getFunctionValue(const char *path);
@@ -24,6 +26,14 @@ public:
     static void onTick();
 
     static std::string invoke(std::string);
+
+    static bool addEffect(unsigned int effectId, int durationTicks, int level, bool effectVisible);
+
+    static bool
+    addEffect(Actor *actor, unsigned int effectId, int durationTicks, int level,
+              bool effectVisible);
+
+    static void onDoubleTick();
 };
 
 

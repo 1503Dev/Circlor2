@@ -65,12 +65,50 @@ std::string changeGameMode(GameType gameType, bool bypass) {
         return "not_in_game";
     }
 }
-
-void Circlor::onTick() {
-    if (isInGame() && clientInstance->getLocalPlayer()) {
-        LocalPlayer lp = *clientInstance->getLocalPlayer();
-        lp.setCanFly(true);
+bool Circlor::addEffect(unsigned int effectId, int durationTicks, int level, bool effectVisible) {
+    if (effectId >= 1 && effectId <= 29 && durationTicks >= 1 && level >= 0 && level <= 255) {
+        if (isInGame() && clientInstance->getLocalPlayer()) {
+            MobEffectInstance mei = MobEffectInstance(effectId, durationTicks, level, false, effectVisible, false);
+            clientInstance->getLocalPlayer()->addEffect(&mei);
+            return true;
+        }
     }
+    return false;
+}
+bool Circlor::addEffect(Actor *actor, unsigned int effectId, int durationTicks, int level, bool effectVisible) {
+    if (effectId >= 1 && effectId <= 29 && durationTicks >= 1 && level >= 0 && level <= 255) {
+        MobEffectInstance mei = MobEffectInstance(effectId, durationTicks, level, false, effectVisible, false);
+        actor->addEffect(&mei);
+        return true;
+    }
+    return false;
+}
+
+bool onTicked = false;
+void Circlor::onDoubleTick() {
+    if (isInGame() && clientInstance->getLocalPlayer()) {
+        LocalPlayer *lp = clientInstance->getLocalPlayer();
+        for (unsigned int i = 2; i <= 29; ++i) {
+            std::string path = "effect/" + std::to_string(i) + "/everlasting";
+            int level = (int) Circlor::getValue(path.c_str());
+            level = level - 1;
+            int duration = 9;
+            if (i == 16) {
+                duration = 204;
+            } else if (i == 15 || i == 9) {
+                duration = 64;
+            }
+            addEffect(lp, i, duration, level, false);
+        }
+    }
+}
+void Circlor::onTick() {
+    if (onTicked) {
+        onTicked = false;
+        return;
+    }
+    onTicked = true;
+    onDoubleTick();
 }
 
 std::string Circlor::invoke(std::string funcPath) {

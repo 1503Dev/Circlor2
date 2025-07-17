@@ -40,3 +40,10 @@ void Actor::setCanFly(bool canFly) {
         setCanFly(this, canFly);
     }
 }
+
+void Actor::addEffect(const MobEffectInstance *mobEffectInstance) {
+    addEffect_t addEffect = (addEffect_t ) getMCFuncPtr("Actor::addEffect");
+    if (addEffect) {
+        addEffect(this, mobEffectInstance);
+    }
+}
