@@ -130,33 +130,33 @@ public class MainActivity extends AppCompatActivity {
                 AlertDialog dialog = new MaterialAlertDialogBuilder(self, R.style.Theme_BlurDialog)
                         .setTitle("关于")
                         .setMessage("""
-Circlor2 v0.1.1
+CirclorAlpha
 Minecraft v""" + Global.getMinecraftVersion() + """
 """ + Global.getMinecraftABI() + """
 
 
 """ + getString(R.string.credits) + """
 :
-  TheChuan1503 (Java-99% Native>99%)
+  TheChuan1503
 
 """ + getString(R.string.special_thanks) + """
 :
-  白无 (Java-1% Native<1%)
-  神墨SM
-  ProHaxMaked
+  白无
+  神墨
 
 """ + getString(R.string.OSL) + """
 :
   Material Icons - Apache-2.0
   Material Components for Android - Apache-2.0
   AndroidX - Apache-2.0
-  ByteHook - MIT License
   BlurView - Apache-2.0
   JSIN - Apache-2.0
-  ShadowHook - MIT License
+  LeviLamina - GPL-3.0
+  mcpe-headers
+  libminecraftpe.so-ida-analysis
 
 Copyright (c) 2023-2025 1503Dev
-https://circlor2.1503dev.top""")
+https://circloralpha.1503dev.top""")
                         .setPositiveButton("确定", null).create();
                 dialog.show();
                 FrameLayout rootView = (FrameLayout) dialog.getWindow().getDecorView();

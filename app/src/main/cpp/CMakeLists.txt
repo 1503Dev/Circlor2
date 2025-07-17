@@ -26,6 +26,7 @@ add_library(${CMAKE_PROJECT_NAME} SHARED
         mc/entity/actor/player/Player.cpp
         mc/gamemode/GameMode.cpp
         mc/level/BlockPos.cpp
+        mc/entity/actor/MobEffectInstance.cpp
 
         HookManager.cpp
         global.cpp

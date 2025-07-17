@@ -2,7 +2,13 @@
     "1.16.201.01_arm64-v8a": {
         "JNI_OnLoad": "41A6BDC",
 
+        "Abilities::Abilities": "642157C",
+        "Abilities::getBool": "6423020",
+
+        "Actor::addEffect": "6688354",
+        "Actor::canFly": "6676940",
         "Actor::getPos": "666EBCC",
+        "Actor::setCanFly": "6676968",
 
         "ClientInstance::getLocalPlayer": "5510B58",
         "ClientInstance::isInGame": "55177A4",
@@ -11,15 +17,28 @@
         "ClientInstance::update": "550E1F0",
 
         "GameMode::destroyBlock": "634D43C",
+        "GameMode::getMaxPickRange": "634F960",
 
         "Level::destroyBlock": "61BD3B8",
+        "Level::tick": "61B4C50",
 
         "LocalPlayer::addLevels": "5BA7658",
         "LocalPlayer::getPickRange": "5BA7B5C",
+        "LocalPlayer::isFlying": "5BA27E0",
         "LocalPlayer::setPlayerGameType": "5BA5C5C",
+        "LocalPlayer::setPlayerGameTypeWithoutServerNotification": "5BA5D14",
         "LocalPlayer::setPos": "5BA2DFC",
 
         "Minecraft::setGameModeReal": "6A23344",
-        "Minecraft::update": "6A23390"
+        "Minecraft::update": "6A23390",
+
+        "MinecraftGame::getInput": "5572D5C",
+        "MinecraftGame::tickInput": "5561998",
+
+        "MobEffectInstance::MobEffectInstance": "63B73F0",
+
+        "Player::getPlayerGameType": "643F78C",
+
+        "PlayerSnapshot::PlayerSnapshot": "5650584"
     }
 }

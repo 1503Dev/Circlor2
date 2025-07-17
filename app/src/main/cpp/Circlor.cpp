@@ -8,6 +8,7 @@
 
 #define TAG "Native/Circlor"
 #include "global.h"
+#include "mc/gamemode/GameMode.h"
 
 double Circlor::getFunctionValue(const char *path) {
     if (circlor2FunctionsSave.find(path) != circlor2FunctionsSave.end()) {
@@ -33,7 +34,49 @@ void Circlor::setFunctionStringValue(const char *path, const char *value) {
     LOGD("Set %s to %s", path, value);
 }
 
+double Circlor::getValue(const char *path) {
+    return getFunctionValue(path);
+}
+void Circlor::setValue(const char *path, double value) {
+    setFunctionValue(path, value);
+}
+std::string Circlor::getString(const char *path) {
+    return getFunctionStringValue(path);
+}
+void Circlor::setString(const char *path, const char *value) {
+    setFunctionStringValue(path, value);
+}
+bool Circlor::getBool(const char *path) {
+    return getFunctionBoolValue(path);
+}
+void Circlor::setBool(const char *path, bool value) {
+    setFunctionValue(path, value);
+}
+
+std::string changeGameMode(GameType gameType, bool bypass) {
+    if (isInGame() && clientInstance->getLocalPlayer()) {
+        if (bypass) {
+            clientInstance->getLocalPlayer()->setPlayerGameTypeWithoutServerNotification(gameType);
+        } else {
+            clientInstance->getLocalPlayer()->setPlayerGameType(gameType);
+        }
+        return "";
+    } else {
+        return "not_in_game";
+    }
+}
+
+void Circlor::onTick() {
+    if (isInGame() && clientInstance->getLocalPlayer()) {
+        LocalPlayer lp = *clientInstance->getLocalPlayer();
+        lp.setCanFly(true);
+    }
+}
+
 std::string Circlor::invoke(std::string funcPath) {
+    bool isChangeGameMode = false;
+    GameType gameModeChangedTo = GameType::Creative;
+
     if (funcPath == "exp_level_change") {
         if (isInGame() && clientInstance->getLocalPlayer()){
             clientInstance->getLocalPlayer()->addLevels((int)Circlor::getFunctionValue("exp_level_change_value"));
@@ -41,32 +84,19 @@ std::string Circlor::invoke(std::string funcPath) {
             return "not_in_game";
         }
     } else if (funcPath == "gamemode_change/s") {
-        if (isInGame() && clientInstance->getLocalPlayer()){
-            clientInstance->getLocalPlayer()->setPlayerGameType(GameType::Survival);
-        } else {
-            return "not_in_game";
-        }
+        isChangeGameMode = true;
+        gameModeChangedTo = GameType::Survival;
     } else if (funcPath == "gamemode_change/c") {
-        if (isInGame() && clientInstance->getLocalPlayer()){
-            clientInstance->getLocalPlayer()->setPlayerGameType(GameType::Creative);
-        } else {
-            return "not_in_game";
-        }
+        isChangeGameMode = true;
+        gameModeChangedTo = GameType::Creative;
     } else if (funcPath == "gamemode_change/a") {
-        if (isInGame() && clientInstance->getLocalPlayer()){
-            clientInstance->getLocalPlayer()->setPlayerGameType(GameType::Adventure);
-        } else {
-            return "not_in_game";
-        }
+        isChangeGameMode = true;
+        gameModeChangedTo = GameType::Adventure;
     }
 
-
-
-    else if (funcPath == "testcall") {
-//        if (mc_gameMode) {
-//            mc_gameMode->destroyBlock(BlockPos(0, 100, 0), mc_gameMode_destroyBlock_flag);
-//        }
-        return "testcalled";
+    if (isChangeGameMode) {
+        return changeGameMode(gameModeChangedTo, Circlor::getBool("gamemode_change/bypass"));
     }
+
     return "";
 }

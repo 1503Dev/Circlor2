@@ -10,12 +10,16 @@
 #include "Player.h"
 #include "../../../math/Vec3.h"
 
+GameType Player::getPlayerGameType() {
+    getPlayerGameType_t getPlayerGameType = (getPlayerGameType_t) getMCFuncPtr("Player::getPlayerGameType");
+    if (getPlayerGameType) {
+        return getPlayerGameType(this);
+    }
+    return GameType::Survival;
+}
 void Player::teleportTo(Vec3& vec3, bool bool1, int int1, int int2, bool bool2) {
-    teleportTo_t func = reinterpret_cast<teleportTo_t>(getMCFuncPtr("Player::teleportTo"));
-    if (func) {
-        func(this, vec3, bool1, int1, int2, bool2);
-        LOGD("teleportTo: %f, %f, %f", vec3.x, vec3.y, vec3.z);
-    } else {
-        LOGE("Failed to teleportTo: %f, %f, %f", vec3.x, vec3.y, vec3.z);
+    teleportTo_t teleportTo = (teleportTo_t) getMCFuncPtr("Player::teleportTo");
+    if (teleportTo) {
+        teleportTo(this, vec3, bool1, int1, int2, bool2);
     }
 }

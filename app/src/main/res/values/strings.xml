@@ -22,4 +22,16 @@
     <string name="s_gamemode_adventure">冒险</string>
     <string name="s_disable_destroy_block">禁止破坏方块</string>
     <string name="s_only_survival_mode">仅生存模式</string>
+    <string name="s_nuker">范围破坏</string>
+    <string name="s_radius">半径</string>
+    <string name="s_nuker_radius_description">警告: 半径会被异常扩大</string>
+    <string name="s_reach">触及范围</string>
+    <string name="s_range">范围</string>
+    <string name="s_only_block">仅对方块有效</string>
+    <string name="s_bypass">服务器绕过</string>
+    <string name="s_gamemode_bypass_description">使用 setPlayerGameTypeWithoutServerNotification 代替原函数</string>
+    <string name="s_fly">飞行</string>
+    <string name="s_fly_force">强制飞行</string>
+    <string name="s_no_clip">穿墙</string>
+    <string name="s_no_clip_description">最好是配合强制飞行使用</string>
 </resources>

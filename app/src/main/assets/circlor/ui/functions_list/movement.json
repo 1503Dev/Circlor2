@@ -4,6 +4,51 @@
     "index": 0,
     "items": [
         {
+            "name": "s_fly",
+            "widget_type": "toggle",
+            "path": "fly/enabled",
+            "items": [
+                {
+                    "name": "s_fly_force",
+                    "widget_type": "toggle",
+                    "path": "fly/force/enabled"
+                }
+            ]
+        },
+        {
+            "name": "s_no_clip",
+            "widget_type": "toggle",
+            "path": "no_clip/enabled",
+            "description": "s_no_clip_description"
+        },
+        {
+            "name": "s_reach",
+            "widget_type": "toggle",
+            "path": "reach/enabled",
+            "description": "s_only_block",
+            "items": [
+                {
+                    "name": "s_range",
+                    "widget_type": "slider",
+                    "path": "reach/range",
+                    "description": "6.7 - 12",
+                    "min": 6.7,
+                    "max": 12,
+                    "value": 6.7,
+                    "step": 0.1
+                },
+                {
+                    "name": "s_range",
+                    "widget_type": "slider",
+                    "path": "reach/range",
+                    "description": "12 - 128",
+                    "min": 12,
+                    "max": 128,
+                    "value": 6.7
+                }
+            ]
+        },
+        {
             "name": "s_teleport",
             "widget_type": "action",
             "path": "teleport/picker"

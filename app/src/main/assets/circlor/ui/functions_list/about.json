@@ -73,15 +73,23 @@
                     "widget_type": "action"
                 },
                 {
-                    "name": "MIT License",
+                    "name": "GPL-3.0",
                     "widget_type": "text_short"
                 },
                 {
-                    "name": "ByteHook",
+                    "name": "LeviLamina",
                     "widget_type": "action"
                 },
                 {
-                    "name": "ShadowHook",
+                    "name": "No license",
+                    "widget_type": "text_short"
+                },
+                {
+                    "name": "mcpe-headers",
+                    "widget_type": "action"
+                },
+                {
+                    "name": "libminecraftpe.so-ida-analysis",
                     "widget_type": "action"
                 }
             ]

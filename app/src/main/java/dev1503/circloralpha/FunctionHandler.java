@@ -98,7 +98,11 @@ public class FunctionHandler {
                     Slider slider = (Slider) view;
                     if (slider.getValue()!= getFloat(path)) {
                         float value = getFloat(path);
-                        if (value >= slider.getValueFrom() && value <= slider.getValueTo()) {
+                        if (value < slider.getValueFrom()) {
+                            slider.setValue(slider.getValueFrom());
+                        } else if (value > slider.getValueTo()) {
+                            slider.setValue(slider.getValueTo());
+                        } else {
                             slider.setValue(value);
                         }
                     }

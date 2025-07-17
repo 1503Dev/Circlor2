@@ -14,6 +14,15 @@ public:
     static std::string getFunctionStringValue(const char *path);
     static void setFunctionStringValue(const char *path, const char *value);
 
+    static double getValue(const char *path);
+    static void setValue(const char *path, double value);
+    static std::string getString(const char *path);
+    static void setString(const char *path, const char *value);
+    static bool getBool(const char *path);
+    static void setBool(const char *path, bool value);
+
+    static void onTick();
+
     static std::string invoke(std::string);
 };
 

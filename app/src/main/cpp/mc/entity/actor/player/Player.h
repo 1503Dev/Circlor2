@@ -7,10 +7,14 @@
 
 #include "../../../math/Vec3.h"
 #include "../Actor.h"
+#include "../../../gamemode/GameType.h"
 
 class Player: public Actor {
 public:
-    typedef void (*teleportTo_t)(Player *player, Vec3&, bool, int, int, bool);
+    typedef GameType (*getPlayerGameType_t) (Player*);
+    typedef void (*teleportTo_t) (Player *player, Vec3&, bool, int, int, bool);
+
+    GameType getPlayerGameType();
     void teleportTo(Vec3 &, bool, int, int, bool);
 };
 

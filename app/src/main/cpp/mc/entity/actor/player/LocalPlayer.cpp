@@ -8,9 +8,9 @@
 #include "../../../../global.h"
 #endif
 
-float LocalPlayer::getPickRange() {
-    return 0;
-}
+//int64_t LocalPlayer::getPickRange() {
+//    return 0;
+//}
 
 void LocalPlayer::addLevels(int levels) {
     addLevels_t addLevels = (addLevels_t) getMCFuncPtr("LocalPlayer::addLevels");
@@ -18,17 +18,21 @@ void LocalPlayer::addLevels(int levels) {
         addLevels(this, levels);
     }
 }
-
 void LocalPlayer::setPos(const Vec3 *position) {
     setPos_t setPos = (setPos_t) getMCFuncPtr("LocalPlayer::setPos");
     if (setPos) {
         setPos(this, position);
     }
 }
-
 void LocalPlayer::setPlayerGameType(GameType gameType) {
     setPlayerGameType_t setPlayerGameType = (setPlayerGameType_t) getMCFuncPtr("LocalPlayer::setPlayerGameType");
     if (setPlayerGameType) {
         setPlayerGameType(this, gameType);
+    }
+}
+void LocalPlayer::setPlayerGameTypeWithoutServerNotification(GameType gameType) {
+    setPlayerGameTypeWithoutServerNotification_t setPlayerGameTypeWithoutServerNotification = (setPlayerGameTypeWithoutServerNotification_t) getMCFuncPtr("LocalPlayer::setPlayerGameTypeWithoutServerNotification");
+    if (setPlayerGameTypeWithoutServerNotification) {
+        setPlayerGameTypeWithoutServerNotification(this, gameType);
     }
 }

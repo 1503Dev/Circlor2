@@ -9,10 +9,11 @@
 
 class ClientInstance {
 public:
-    typedef LocalPlayer* (*getLocalPlayer_t)(void* clientInstance);
-    typedef bool (*isInGame_t)(void* clientInstance);
-    typedef void (*requestLeaveGame_t)(void* clientInstance, bool p1, bool p2);
-    typedef void (*update_t)(void* clientInstance, bool p1);
+    typedef LocalPlayer* (*getLocalPlayer_t)(ClientInstance* clientInstance);
+    typedef bool (*isInGame_t)(ClientInstance* clientInstance);
+    typedef void (*requestLeaveGame_t)(ClientInstance* clientInstance, bool p1, bool p2);
+    typedef void (*tick_t)(ClientInstance*);
+    typedef void (*update_t)(ClientInstance* clientInstance, bool p1);
 
     LocalPlayer* getLocalPlayer();
     bool isInGame();

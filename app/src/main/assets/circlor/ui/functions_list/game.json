@@ -28,6 +28,12 @@
             "widget_type": "collapse",
             "items": [
                 {
+                    "name": "s_bypass",
+                    "widget_type": "toggle",
+                    "path": "gamemode_change/bypass",
+                    "description": "s_gamemode_bypass_description"
+                },
+                {
                     "name": "s_gamemode_survival",
                     "widget_type": "action",
                     "path": "gamemode_change/s"
@@ -47,8 +53,23 @@
         {
             "name": "s_disable_destroy_block",
             "widget_type": "toggle",
-            "path": "destroy_block_disabled",
-            "description": "s_only_survival_mode"
+            "path": "destroy_block/disabled"
+        },
+        {
+            "name": "s_nuker",
+            "widget_type": "toggle",
+            "path": "nuker/enabled",
+            "items": [
+                {
+                    "name": "s_radius",
+                    "widget_type": "slider",
+                    "path": "nuker/radius",
+                    "min": 1,
+                    "max": 5,
+                    "value": 1,
+                    "description": "s_nuker_radius_description"
+                }
+            ]
         }
     ]
 }

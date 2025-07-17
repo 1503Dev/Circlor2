@@ -16,7 +16,6 @@ void Actor::setPos(Vec3 &vec3) {
         LOGD("setPos: %f, %f, %f", vec3.x, vec3.y, vec3.z);
     }
 }
-
 void Actor::setPos(float x, float y, float z) {
     Vec3 vec3(x, y, z);
     setPos(vec3);
@@ -28,11 +27,16 @@ void Actor::teleportTo(Vec3 pos, bool shouldStopRiding, int cause, int sourceEnt
         LOGD("[C] teleportTo: %f, %f, %f, SPR: %b, C: %x, SET: %x, KV: %b", pos.x, pos.y, pos.z, shouldStopRiding, cause, sourceEntityType, keepVelocity);
     }
 }
-
 Vec3 *Actor::getPos() {
     getPos_t getPos = (getPos_t ) getMCFuncPtr("Actor::getPos");
     if (getPos) {
         return getPos(this);
     }
     return nullptr;
+}
+void Actor::setCanFly(bool canFly) {
+    setCanFly_t setCanFly = (setCanFly_t ) getMCFuncPtr("Actor::setCanFly");
+    if (setCanFly) {
+        setCanFly(this, canFly);
+    }
 }
