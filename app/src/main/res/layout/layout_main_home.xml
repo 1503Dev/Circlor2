@@ -13,13 +13,14 @@
             android:id="@+id/editText_packageName"
             android:inputType="text"/>
     </com.google.android.material.textfield.TextInputLayout>
-    
+
     <com.google.android.material.button.MaterialButton
+        android:id="@+id/button_launch"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:onClick="startGame"
         android:text="启动游戏"
-        android:id="@+id/button_launch"
-        android:onClick="startGame"/>
+        android:textColor="@color/black" />
     <!--<TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

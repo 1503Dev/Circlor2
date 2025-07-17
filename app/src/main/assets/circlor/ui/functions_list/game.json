@@ -1,0 +1,54 @@
+{
+    "name": "game",
+    "icon": "ic_sports_esports",
+    "index": 1,
+    "show_if_version": "1.16",
+    "items": [
+        {
+            "name": "s_exp_manager",
+            "widget_type": "collapse",
+            "items": [
+                {
+                    "name": "s_exp_level_change",
+                    "widget_type": "action",
+                    "path": "exp_level_change"
+                },
+                {
+                    "name": "s_exp_level_change_value",
+                    "widget_type": "slider",
+                    "path": "exp_level_change_value",
+                    "min": -10,
+                    "max": 10,
+                    "value": 1
+                }
+            ]
+        },
+        {
+            "name": "s_gamemode",
+            "widget_type": "collapse",
+            "items": [
+                {
+                    "name": "s_gamemode_survival",
+                    "widget_type": "action",
+                    "path": "gamemode_change/s"
+                },
+                {
+                    "name": "s_gamemode_creative",
+                    "widget_type": "action",
+                    "path": "gamemode_change/c"
+                },
+                {
+                    "name": "s_gamemode_adventure",
+                    "widget_type": "action",
+                    "path": "gamemode_change/a"
+                }
+            ]
+        },
+        {
+            "name": "s_disable_destroy_block",
+            "widget_type": "toggle",
+            "path": "destroy_block_disabled",
+            "description": "s_only_survival_mode"
+        }
+    ]
+}

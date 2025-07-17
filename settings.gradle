@@ -19,5 +19,5 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "Circlor2"
+rootProject.name = "CirclorAlpha"
 include ':app'

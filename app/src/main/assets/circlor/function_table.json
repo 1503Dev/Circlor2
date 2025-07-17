@@ -1,0 +1,25 @@
+{
+    "1.16.201.01_arm64-v8a": {
+        "JNI_OnLoad": "41A6BDC",
+
+        "Actor::getPos": "666EBCC",
+
+        "ClientInstance::getLocalPlayer": "5510B58",
+        "ClientInstance::isInGame": "55177A4",
+        "ClientInstance::requestLeaveGame": "550C414",
+        "ClientInstance::tick": "550E108",
+        "ClientInstance::update": "550E1F0",
+
+        "GameMode::destroyBlock": "634D43C",
+
+        "Level::destroyBlock": "61BD3B8",
+
+        "LocalPlayer::addLevels": "5BA7658",
+        "LocalPlayer::getPickRange": "5BA7B5C",
+        "LocalPlayer::setPlayerGameType": "5BA5C5C",
+        "LocalPlayer::setPos": "5BA2DFC",
+
+        "Minecraft::setGameModeReal": "6A23344",
+        "Minecraft::update": "6A23390"
+    }
+}

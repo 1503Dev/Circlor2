@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Circlor2</string>
+    <string name="app_name">CirclorAlpha</string>
     <string name="credits">制作人员名单</string>
     <string name="special_thanks">特别鸣谢</string>
     <string name="OSL">开放源代码许可</string>
@@ -15,4 +15,11 @@
     <string name="s_exp_level_change_value">变动量</string>
     <string name="game">游戏</string>
     <string name="about">关于</string>
+    <string name="version_name">0.1.0</string>
+    <string name="s_gamemode">游戏模式</string>
+    <string name="s_gamemode_survival">生存</string>
+    <string name="s_gamemode_creative">创造</string>
+    <string name="s_gamemode_adventure">冒险</string>
+    <string name="s_disable_destroy_block">禁止破坏方块</string>
+    <string name="s_only_survival_mode">仅生存模式</string>
 </resources>

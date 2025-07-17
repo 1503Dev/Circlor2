@@ -3,7 +3,6 @@
         JNI_OnLoad;
         Java_*;
         ANativeActivity_onCreate;
-        android_main;
     local:
         *;
 };

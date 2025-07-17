@@ -1,4 +1,4 @@
-package dev1503.circlor2;
+package dev1503.circloralpha;
 
 
 import android.animation.AnimatorSet;

@@ -1,0 +1,90 @@
+{
+    "name": "about",
+    "icon": "ic_info",
+    "index": 600,
+    "hidden": false,
+    "items": [
+        {
+            "name": "Author",
+            "widget_type": "text_short"
+        },
+        {
+            "name": "1503Dev",
+            "widget_type": "action"
+        },
+        {
+            "name": "Website",
+            "widget_type": "text_short"
+        },
+        {
+            "name": "https://circloraplha.1503dev.top",
+            "path": ":jump_url/https://circloraplha.1503dev.top",
+            "widget_type": "action"
+        },
+        {
+            "name": "Version",
+            "widget_type": "text_short"
+        },
+        {
+            "name": "version_name",
+            "widget_type": "action"
+        },
+        {
+            "name": "Special Thanks",
+            "widget_type": "collapse",
+            "items": [
+                {
+                    "name": "白无",
+                    "widget_type": "action",
+                    "text_style": "bold"
+                },
+                {
+                    "name": "神墨",
+                    "widget_type": "action"
+                }
+            ]
+        },
+        {
+            "name": "OSL",
+            "widget_type": "collapse",
+            "items": [
+                {
+                    "name": "Apache-2.0",
+                    "widget_type": "text_short"
+                },
+                {
+                    "name": "Material Icons",
+                    "widget_type": "action"
+                },
+                {
+                    "name": "Material Components for Android",
+                    "widget_type": "action"
+                },
+                {
+                    "name": "AndroidX",
+                    "widget_type": "action"
+                },
+                {
+                    "name": "BlurView",
+                    "widget_type": "action"
+                },
+                {
+                    "name": "JSIN",
+                    "widget_type": "action"
+                },
+                {
+                    "name": "MIT License",
+                    "widget_type": "text_short"
+                },
+                {
+                    "name": "ByteHook",
+                    "widget_type": "action"
+                },
+                {
+                    "name": "ShadowHook",
+                    "widget_type": "action"
+                }
+            ]
+        }
+    ]
+}
