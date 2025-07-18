@@ -19,7 +19,7 @@ public:
     typedef void (*setPlayerGameTypeWithoutServerNotification_t)(LocalPlayer*, GameType);
 
     void addLevels(int levels);
-//    int64_t getPickRange();
+    static bool isLocalPlayer();
     void setPlayerGameType(GameType gameType);
     void setPlayerGameTypeWithoutServerNotification(GameType gameType);
     void setPos(const Vec3 *);

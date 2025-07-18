@@ -44,12 +44,6 @@
             "widget_type": "collapse",
             "items": [
                 {
-                    "name": "s_bypass",
-                    "widget_type": "toggle",
-                    "path": "gamemode_change/bypass",
-                    "description": "s_gamemode_bypass_description"
-                },
-                {
                     "name": "s_gamemode_survival",
                     "widget_type": "action",
                     "path": "gamemode_change/s"
@@ -63,6 +57,12 @@
                     "name": "s_gamemode_adventure",
                     "widget_type": "action",
                     "path": "gamemode_change/a"
+                },
+                {
+                    "name": "s_bypass",
+                    "widget_type": "toggle",
+                    "path": "gamemode_change/bypass",
+                    "description": "s_gamemode_bypass_description"
                 }
             ]
         },

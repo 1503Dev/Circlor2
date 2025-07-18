@@ -17,6 +17,7 @@
 #include "mc/entity/actor/MobEffectInstance.h"
 #include "mc/client/MinecraftGame.h"
 #include "mc/client/Timer.h"
+#include "mc/entity/actor/player/LevelRendererPlayer.h"
 
 
 bool nuking = false;
@@ -29,9 +30,12 @@ ClientInstance::update_t O_ClientInstance_update = nullptr;
 GameMode::destroyBlock_t O_GameMode_destroyBlock = nullptr;
 GameMode::getMaxPickRange_t O_GameMode_getMaxPickRange = nullptr;
 Level::tick_t O_Level_tick = nullptr;
+LevelRendererPlayer::getFov_t O_LevelRendererPlayer_getFov = nullptr;
 LocalPlayer::getPickRange_t O_LocalPlayer_getPickRange = nullptr;
 Minecraft::getTimer_t O_Minecraft_getTimer = nullptr;
 MinecraftGame::tickInput_t O_MinecraftGame_tickInput = nullptr;
+Player::getCameraOffset_t O_Player_getCameraOffset = nullptr;
+Player::getSpeed_t O_Player_getSpeed = nullptr;
 
 
 
@@ -93,6 +97,21 @@ void H_Level_tick(Level* l) {
     Circlor::onTick();
     O_Level_tick(l);
 }
+float H_LevelRendererPlayer_getFov(LevelRendererPlayer* lrp, float f, char c) {
+    float rez = O_LevelRendererPlayer_getFov(lrp, f, c);
+    if (Circlor::getBool("zoom/enabled")) {
+        rez = rez - (float) Circlor::getValue("zoom/value");
+        if (rez > 180) {
+            rez = 180;
+        } else if (rez < 0) {
+            rez = 0;
+        }
+    }
+    if (Circlor::getBool("screen_reversal/enabled")) {
+        rez = -rez;
+    }
+    return rez;
+}
 float H_LocalPlayer_getPickRange(LocalPlayer *lp) {
     if (Circlor::getBool("reach/enabled")) {
         return (float) Circlor::getValue("reach/range");
@@ -103,11 +122,27 @@ Timer* H_Minecraft_getTimer(Minecraft* mc) {
     Timer* t = O_Minecraft_getTimer(mc);
     if (Circlor::getBool("timer/enabled")) {
         t->mTicksPerSecond = (float) Circlor::getValue("timer/scale") * 20;
+    } else {
+        t->mTicksPerSecond = 20;
     }
     return t;
 }
 void H_MinecraftGame_tickInput(MinecraftGame* mg) {
     O_MinecraftGame_tickInput(mg);
+}
+float H_Player_getCameraOffset(Player* p) {
+    float offset = O_Player_getCameraOffset(p);
+    if (Circlor::getBool("camera_height_offset/enabled")) {
+        offset = offset + (float) Circlor::getValue("camera_height_offset/value");
+    }
+    return offset;
+}
+float H_Player_getSpeed(Player* p) {
+    float speed = O_Player_getSpeed(p);
+    if (Circlor::getBool("speed/enabled")) {
+        speed = speed + (float)(Circlor::getValue("speed/value") * 0.03);
+    }
+    return speed;
 }
 
 
@@ -119,9 +154,12 @@ void HookManager::init() {
     hook("GameMode::destroyBlock", (void*)&H_GameMode_destroyBlock, (void**)&O_GameMode_destroyBlock);
     hook("GameMode::getMaxPickRange", (void*)&H_GameMode_getMaxPickRange, (void**)&O_GameMode_getMaxPickRange);
     hook("Level::tick", (void*)&H_Level_tick, (void**)&O_Level_tick);
+    hook("LevelRendererPlayer::getFov", (void*)&H_LevelRendererPlayer_getFov, (void**)&O_LevelRendererPlayer_getFov);
     hook("LocalPlayer::getPickRange", (void*)&H_LocalPlayer_getPickRange, (void**)&O_LocalPlayer_getPickRange);
-    hook("MinecraftGame::tickInput", (void*)&H_MinecraftGame_tickInput, (void**)&O_MinecraftGame_tickInput);
+//    hook("MinecraftGame::tickInput", (void*)&H_MinecraftGame_tickInput, (void**)&O_MinecraftGame_tickInput);
     hook("Minecraft::getTimer", (void*)&H_Minecraft_getTimer, (void**)&O_Minecraft_getTimer);
+    hook("Player::getCameraOffset", (void*)&H_Player_getCameraOffset, (void**)&O_Player_getCameraOffset);
+    hook("Player::getSpeed", (void*)&H_Player_getSpeed, (void**)&O_Player_getSpeed);
 }
 
 

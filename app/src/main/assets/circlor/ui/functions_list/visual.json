@@ -9,6 +9,42 @@
             "widget_type": "toggle"
         },
         {
+            "name": "s_zoom",
+            "path": "zoom/enabled",
+            "widget_type": "toggle",
+            "items": [
+                {
+                    "name": "s_scale",
+                    "path": "zoom/value",
+                    "widget_type": "slider",
+                    "min": -70,
+                    "max": 90,
+                    "value": 20
+                }
+            ]
+        },
+        {
+            "name": "s_camera_height_offset",
+            "path": "camera_height_offset/enabled",
+            "widget_type": "toggle",
+            "items": [
+                {
+                    "name": "s_height",
+                    "path": "camera_height_offset/value",
+                    "widget_type": "slider",
+                    "min": -10,
+                    "max": 10,
+                    "value": 0.5,
+                    "step": 0.5
+                }
+            ]
+        },
+        {
+            "name": "s_screen_reversal",
+            "path": "screen_reversal/enabled",
+            "widget_type": "toggle"
+        },
+        {
             "name": "s_gui_scale",
             "path": "gui_scale/enabled",
             "widget_type": "toggle",
@@ -24,5 +60,6 @@
                 }
             ]
         }
+
     ]
 }

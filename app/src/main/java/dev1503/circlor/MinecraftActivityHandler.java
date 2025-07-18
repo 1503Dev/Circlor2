@@ -101,7 +101,7 @@ public class MinecraftActivityHandler {
         );
         lp.x = 96;
         lp.y = 96;
-         wm.addView(textView, lp);
+//        wm.addView(textView, lp);
     }
     public static void onCreating(Activity activity) {
         if (!Global.SUPPORTED_VERSION.equals(Global.getMinecraftVersion()) && !Global.fakeActivityEnabled){
@@ -161,7 +161,6 @@ public class MinecraftActivityHandler {
                     try {
                         icon = activity.getResources().getIdentifier(functionClass.getString("icon", ""), "drawable", activity.getPackageName());
                     } catch (Exception e) {
-                        Log.e(TAG, "Function icon not found: circlor.function." + name);
                     }
                 }
             }
@@ -608,7 +607,7 @@ public class MinecraftActivityHandler {
         LinearLayout layout = new LinearLayout(activity);
         GradientDrawable circleDrawable = new GradientDrawable();
         circleDrawable.setShape(GradientDrawable.OVAL);
-        circleDrawable.setStroke(6, activity.getResources().getColor(R.color.blue_900));
+        circleDrawable.setStroke(6, activity.getResources().getColor(R.color.teal_700));
         circleDrawable.setColor(Color.TRANSPARENT);
         layout.setBackground(circleDrawable);
 
@@ -618,13 +617,14 @@ public class MinecraftActivityHandler {
                 ViewGroup.LayoutParams.MATCH_PARENT,
                 ViewGroup.LayoutParams.MATCH_PARENT
         );
-        imageViewLayoutParams.setMargins(-16, -16, -16, -16);
+        imageViewLayoutParams.setMargins(-12, -12, -12, -12);
         imageView.setLayoutParams(imageViewLayoutParams);
         imageView.setScaleType(ImageView.ScaleType.FIT_CENTER);
 
         WindowManager.LayoutParams lp = getGeneralLayoutParams();
-        lp.width = 128;
-        lp.height = lp.width;
+        int size = Utils.dpToPx(48);
+        lp.width = size;
+        lp.height = size;
 
 
         AtomicInteger lastX = new AtomicInteger();

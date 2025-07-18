@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
 import android.graphics.drawable.ColorDrawable;
+import android.util.DisplayMetrics;
 import android.view.View;
 
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
@@ -161,5 +162,13 @@ public class Utils {
         Objects.requireNonNull(dialog.getWindow()).setBackgroundDrawable(new ColorDrawable(0xBB1D1B20));
 
         return dialog;
+    }
+    public static int pxToDp(float px) {
+        DisplayMetrics metrics = activity.getResources().getDisplayMetrics();
+        return (int) (px / metrics.density);
+    }
+    public static int dpToPx(float dp) {
+        DisplayMetrics metrics = activity.getResources().getDisplayMetrics();
+        return (int) (dp * metrics.density);
     }
 }

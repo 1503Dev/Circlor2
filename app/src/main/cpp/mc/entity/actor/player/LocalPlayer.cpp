@@ -36,3 +36,7 @@ void LocalPlayer::setPlayerGameTypeWithoutServerNotification(GameType gameType) 
         setPlayerGameTypeWithoutServerNotification(this, gameType);
     }
 }
+
+bool LocalPlayer::isLocalPlayer() {
+    return true;
+}

@@ -27,6 +27,13 @@ void Actor::teleportTo(Vec3 pos, bool shouldStopRiding, int cause, int sourceEnt
         LOGD("[C] teleportTo: %f, %f, %f, SPR: %b, C: %x, SET: %x, KV: %b", pos.x, pos.y, pos.z, shouldStopRiding, cause, sourceEntityType, keepVelocity);
     }
 }
+float Actor::getCameraDistance() {
+    getCameraDistance_t getCameraDistance = (getCameraDistance_t ) getMCFuncPtr("Actor::getCameraDistance");
+    if (getCameraDistance) {
+        return getCameraDistance(this);
+    }
+    return 0;
+}
 Vec3 *Actor::getPos() {
     getPos_t getPos = (getPos_t ) getMCFuncPtr("Actor::getPos");
     if (getPos) {
@@ -46,4 +53,8 @@ void Actor::addEffect(const MobEffectInstance *mobEffectInstance) {
     if (addEffect) {
         addEffect(this, mobEffectInstance);
     }
+}
+
+bool Actor::isLocalPlayer() {
+    return false;
 }

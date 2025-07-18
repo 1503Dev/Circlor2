@@ -11,7 +11,9 @@
 
 class Player: public Actor {
 public:
+    typedef float (*getCameraOffset_t) (Player*);
     typedef GameType (*getPlayerGameType_t) (Player*);
+    typedef float (*getSpeed_t) (Player*);
     typedef void (*teleportTo_t) (Player *player, Vec3&, bool, int, int, bool);
 
     GameType getPlayerGameType();

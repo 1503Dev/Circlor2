@@ -5,7 +5,8 @@
     <string name="OSL">开放源代码许可</string>
     <string name="movement">动态</string>
     <string name="system">系统</string>
-    <string name="s_exit">一键闪退跑路</string>
+    <string name="s_exit">闪退跑路</string>
+    <string name="s_exit_confirm">确认闪退</string>
     <string name="s_teleport">传送</string>
     <string name="position_picker">坐标选择器</string>
     <string name="not_in_game">请在游戏内使用</string>
@@ -49,4 +50,9 @@
     <string name="s_gui_scale">GUI 缩放</string>
     <string name="s_scale">缩放</string>
     <string name="s_timer">变速齿轮</string>
+    <string name="s_speed">速度</string>
+    <string name="s_zoom">视野缩放</string>
+    <string name="s_screen_reversal">画面反转</string>
+    <string name="s_camera_height_offset">相机高度偏移</string>
+    <string name="s_height">高度</string>
 </resources>

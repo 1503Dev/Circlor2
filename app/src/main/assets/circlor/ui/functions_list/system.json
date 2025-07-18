@@ -5,8 +5,14 @@
     "items": [
         {
             "name": "s_exit",
-            "path": "exit",
-            "widget_type": "action"
+            "widget_type": "toggle",
+            "items": [
+                {
+                    "name": "s_exit_confirm",
+                    "widget_type": "action",
+                    "path": "exit"
+                }
+            ]
         },
         {
             "name": "s_portrait_screen",

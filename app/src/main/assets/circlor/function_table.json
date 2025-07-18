@@ -7,8 +7,12 @@
 
         "Actor::addEffect": "6688354",
         "Actor::canFly": "6676940",
+        "Actor::getCameraDistance": "66882C4",
         "Actor::getPos": "666EBCC",
+        "Actor::isLocalPlayer": "66785D4",
         "Actor::setCanFly": "6676968",
+
+        "Camera::getPosition": "55F0C14",
 
         "ClientInstance::getGuiData": "55198C8",
         "ClientInstance::getLocalPlayer": "5510B58",
@@ -30,6 +34,8 @@
         "Level::destroyBlock": "61BD3B8",
         "Level::tick": "61B4C50",
 
+        "LevelRendererPlayer::getFov": "5999834",
+
         "LocalPlayer::addLevels": "5BA7658",
         "LocalPlayer::getPickRange": "5BA7B5C",
         "LocalPlayer::isFlying": "5BA27E0",
@@ -46,7 +52,9 @@
 
         "MobEffectInstance::MobEffectInstance": "63B73F0",
 
+        "Player::getCameraOffset": "6437E10",
         "Player::getPlayerGameType": "643F78C",
+        "Player::getSpeed": "642C3B4",
 
         "PlayerSnapshot::PlayerSnapshot": "5650584",
 

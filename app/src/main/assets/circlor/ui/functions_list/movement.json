@@ -16,12 +16,28 @@
             ]
         },
         {
+            "name": "s_speed",
+            "path": "speed/enabled",
+            "widget_type": "toggle",
+            "items": [
+                {
+                    "name": "s_speed",
+                    "widget_type": "slider",
+                    "path": "speed/value",
+                    "min": 1,
+                    "max": 20,
+                    "value": 1,
+                    "step": 1
+                }
+            ]
+        },
+        {
             "name": "s_effect_jump_boost",
             "path": "effect/8/everlasting",
             "widget_type": "slider",
             "min": 0,
             "max": 20,
-            "value": 0
+            "value": 1
         },
         {
             "name": "s_no_clip",
@@ -62,7 +78,7 @@
                     "description": "6.7 - 12",
                     "min": 6.7,
                     "max": 12,
-                    "value": 6.7,
+                    "value": 7,
                     "step": 0.1
                 },
                 {
@@ -72,7 +88,7 @@
                     "description": "6.7 - 128",
                     "min": 6.7,
                     "max": 128,
-                    "value": 6.7,
+                    "value": 7,
                     "step": 0.1
                 }
             ]
