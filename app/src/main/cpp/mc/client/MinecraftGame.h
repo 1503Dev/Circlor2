@@ -7,7 +7,11 @@
 
 
 class MinecraftGame {
+public:
+    typedef void* (*getInput_t) (MinecraftGame*);
+    typedef void (*tickInput_t) (MinecraftGame*);
 
+    void* getInput();
 };
 
 

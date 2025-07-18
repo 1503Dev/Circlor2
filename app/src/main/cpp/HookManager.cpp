@@ -15,6 +15,7 @@
 #include "mc/entity/actor/player/PlayerSnapshot.h"
 #include "mc/entity/actor/player/Abilities.h"
 #include "mc/entity/actor/MobEffectInstance.h"
+#include "mc/client/MinecraftGame.h"
 
 
 bool nuking = false;
@@ -28,7 +29,7 @@ GameMode::destroyBlock_t O_GameMode_destroyBlock = nullptr;
 GameMode::getMaxPickRange_t O_GameMode_getMaxPickRange = nullptr;
 Level::tick_t O_Level_tick = nullptr;
 LocalPlayer::getPickRange_t O_LocalPlayer_getPickRange = nullptr;
-MobEffectInstance::MobEffectInstance_t O_MobEffectInstance_MobEffectInstance = nullptr;
+MinecraftGame::tickInput_t O_MinecraftGame_tickInput = nullptr;
 
 
 
@@ -57,6 +58,7 @@ void H_ClientInstance_update(ClientInstance *ci, bool b) {
 }
 void H_ClientInstance_requestLeaveGame(ClientInstance *ci, bool b1, bool b2) {
     LOGD("ClientInstance::requestLeaveGame(%d, %d)", b1, b2);
+    Circlor::setIsFirstTick(true);
     O_ClientInstance_requestLeaveGame(ci, b1, b2);
 }
 void H_GameMode_destroyBlock(GameMode *gm, const BlockPos *pos, unsigned char flag) {
@@ -94,9 +96,8 @@ float H_LocalPlayer_getPickRange(LocalPlayer *lp) {
     }
     return O_LocalPlayer_getPickRange(lp);
 }
-void H_MobEffectInstance_MobEffectInstance(MobEffectInstance* mei, unsigned int p1, int p2, int p3, bool p4, bool p5, bool p6) {
-    LOGD("MobEffectInstance::MobEffectInstance(%d, %d, %d, %d, %d, %d)", p1, p2, p3, p4, p5, p6);
-    O_MobEffectInstance_MobEffectInstance(mei, p1, p2, p3, p4, p5, p6);
+void H_MinecraftGame_tickInput(MinecraftGame* mg) {
+    O_MinecraftGame_tickInput(mg);
 }
 
 
@@ -107,9 +108,9 @@ void HookManager::init() {
     hook("ClientInstance::update", (void*)&H_ClientInstance_update, (void**)&O_ClientInstance_update);
     hook("GameMode::destroyBlock", (void*)&H_GameMode_destroyBlock, (void**)&O_GameMode_destroyBlock);
     hook("GameMode::getMaxPickRange", (void*)&H_GameMode_getMaxPickRange, (void**)&O_GameMode_getMaxPickRange);
-//    hook("MobEffectInstance::MobEffectInstance", (void*)&H_MobEffectInstance_MobEffectInstance, (void**)&O_MobEffectInstance_MobEffectInstance);
     hook("Level::tick", (void*)&H_Level_tick, (void**)&O_Level_tick);
     hook("LocalPlayer::getPickRange", (void*)&H_LocalPlayer_getPickRange, (void**)&O_LocalPlayer_getPickRange);
+    hook("MinecraftGame::tickInput", (void*)&H_MinecraftGame_tickInput, (void**)&O_MinecraftGame_tickInput);
 }
 
 

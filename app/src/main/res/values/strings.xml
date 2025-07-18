@@ -34,4 +34,16 @@
     <string name="s_fly_force">强制飞行</string>
     <string name="s_no_clip">穿墙</string>
     <string name="s_no_clip_description">最好是配合强制飞行使用</string>
+    <string name="s_effect_night_vision">夜视</string>
+    <string name="s_effect_slow_falling">缓慢降落</string>
+    <string name="s_effect_haste">急迫</string>
+    <string name="s_effect_jump_boost">跳跃提升</string>
+    <string name="s_effect_blindness">失明</string>
+    <string name="s_effect_nausea">反胃</string>
+    <string name="s_effect_mining_fatigue">挖掘疲劳</string>
+    <string name="effects">效果</string>
+    <string name="visual">渲染</string>
+    <string name="s_fast_mine">快速挖掘</string>
+    <string name="s_fullbright">夜视</string>
+    <string name="s_level">等级</string>
 </resources>

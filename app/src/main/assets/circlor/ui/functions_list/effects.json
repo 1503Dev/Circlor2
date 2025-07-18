@@ -1,7 +1,7 @@
 {
     "name": "effects",
     "icon": "ic_air_freshener",
-    "index": 2,
+    "index": 3,
     "items": [
         {
             "name": "s_effect_night_vision",

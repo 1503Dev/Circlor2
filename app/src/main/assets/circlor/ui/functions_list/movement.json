@@ -16,10 +16,38 @@
             ]
         },
         {
+            "name": "s_effect_jump_boost",
+            "path": "effect/8/everlasting",
+            "widget_type": "slider",
+            "min": 0,
+            "max": 20,
+            "value": 0
+        },
+        {
             "name": "s_no_clip",
             "widget_type": "toggle",
             "path": "no_clip/enabled",
             "description": "s_no_clip_description"
+        },
+        {
+            "name": "s_effect_slow_falling",
+            "path": "effect/27/everlasting",
+            "widget_type": "toggle"
+        },
+        {
+            "name": "s_fast_mine",
+            "path": "fast_mine/enabled",
+            "widget_type": "toggle",
+            "items": [
+                {
+                    "name": "s_level",
+                    "widget_type": "slider",
+                    "path": "fast_mine/level",
+                    "min": 1,
+                    "max": 8,
+                    "value": 1
+                }
+            ]
         },
         {
             "name": "s_reach",
@@ -41,10 +69,11 @@
                     "name": "s_range",
                     "widget_type": "slider",
                     "path": "reach/range",
-                    "description": "12 - 128",
-                    "min": 12,
+                    "description": "6.7 - 128",
+                    "min": 6.7,
                     "max": 128,
-                    "value": 6.7
+                    "value": 6.7,
+                    "step": 0.1
                 }
             ]
         },

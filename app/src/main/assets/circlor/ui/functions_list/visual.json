@@ -1,0 +1,12 @@
+{
+    "name": "visual",
+    "icon": "ic_add_a_photo",
+    "index": 2,
+    "items": [
+        {
+            "name": "s_fullbright",
+            "path": "effect/16/everlasting",
+            "widget_type": "toggle"
+        }
+    ]
+}

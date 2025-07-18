@@ -31,3 +31,11 @@ LocalPlayer *ClientInstance::getLocalPlayer() {
     }
     return nullptr;
 }
+
+GuiData *ClientInstance::getGuiData() {
+    getGuiData_t getGuiData = (getGuiData_t) getMCFuncPtr("ClientInstance::getGuiData");
+    if (getGuiData) {
+        return getGuiData(this);
+    }
+    return nullptr;
+}

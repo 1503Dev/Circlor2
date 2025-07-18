@@ -10,6 +10,7 @@
         "Actor::getPos": "666EBCC",
         "Actor::setCanFly": "6676968",
 
+        "ClientInstance::getGuiData": "55198C8",
         "ClientInstance::getLocalPlayer": "5510B58",
         "ClientInstance::isInGame": "55177A4",
         "ClientInstance::requestLeaveGame": "550C414",
@@ -18,6 +19,11 @@
 
         "GameMode::destroyBlock": "634D43C",
         "GameMode::getMaxPickRange": "634F960",
+
+        "GuiData::displayClientMessage": "541E76C",
+        "GuiData::setSubtitle": "5420A5C",
+        "GuiData::setTitle": "54209D4",
+        "GuiData::showTipMessage": "541F844",
 
         "Level::destroyBlock": "61BD3B8",
         "Level::tick": "61B4C50",

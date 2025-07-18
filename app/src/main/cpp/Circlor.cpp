@@ -10,6 +10,8 @@
 #include "global.h"
 #include "mc/gamemode/GameMode.h"
 
+bool Circlor::isFirstTick = true;
+
 double Circlor::getFunctionValue(const char *path) {
     if (circlor2FunctionsSave.find(path) != circlor2FunctionsSave.end()) {
         return circlor2FunctionsSave[path];
@@ -32,6 +34,9 @@ void Circlor::setFunctionValue(const char *path, double value) {
 void Circlor::setFunctionStringValue(const char *path, const char *value) {
     circlor2FunctionsStringSave[path] = value;
     LOGD("Set %s to %s", path, value);
+}
+void Circlor::setIsFirstTick(bool value) {
+    Circlor::isFirstTick = value;
 }
 
 double Circlor::getValue(const char *path) {
@@ -88,6 +93,10 @@ bool onTicked = false;
 void Circlor::onDoubleTick() {
     if (isInGame() && clientInstance->getLocalPlayer()) {
         LocalPlayer *lp = clientInstance->getLocalPlayer();
+        if (Circlor::getBool("fast_mine/enabled")) {
+            int level = (int) Circlor::getValue("fast_mine/level");
+            addEffect(lp, 3, 9, level * level, false);
+        }
         for (unsigned int i = 2; i <= 29; ++i) {
             std::string path = "effect/" + std::to_string(i) + "/everlasting";
             int level = (int) Circlor::getValue(path.c_str());
@@ -103,6 +112,14 @@ void Circlor::onDoubleTick() {
     }
 }
 void Circlor::onTick() {
+    if (isFirstTick) {
+        isFirstTick = false;
+        GuiData* gd = clientInstance->getGuiData();
+        if (gd) {
+            gd->showTipMessage("CirclorAlpha Injected");
+        }
+    }
+
     if (onTicked) {
         onTicked = false;
         return;
