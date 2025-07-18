@@ -5,8 +5,10 @@
       <w>gamemode</w>
       <w>hookmanager</w>
       <w>instabuild</w>
+      <w>libcirclor</w>
       <w>ljava</w>
       <w>mcpe</w>
+      <w>randf</w>
     </words>
   </dictionary>
 </component>

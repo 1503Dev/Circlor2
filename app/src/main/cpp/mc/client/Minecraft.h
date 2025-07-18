@@ -7,9 +7,11 @@
 
 
 #include "../gamemode/GameType.h"
+#include "Timer.h"
 
 class Minecraft {
 public:
+    typedef Timer* (*getTimer_t) (Minecraft*);
     typedef void (*setGameModeReal_t)(void* minecraft, GameType);
     typedef void (*update_t)(void* minecraft);
 

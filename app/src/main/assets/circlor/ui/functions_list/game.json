@@ -5,6 +5,22 @@
     "show_if_version": "1.16",
     "items": [
         {
+            "name": "s_timer",
+            "widget_type": "toggle",
+            "path": "timer/enabled",
+            "items": [
+                {
+                    "name": "s_scale",
+                    "widget_type": "slider",
+                    "path": "timer/scale",
+                    "min": 0.2,
+                    "max": 10,
+                    "value": 1,
+                    "step": 0.1
+                }
+            ]
+        },
+        {
             "name": "s_exp_manager",
             "widget_type": "collapse",
             "items": [

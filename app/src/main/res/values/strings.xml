@@ -46,4 +46,7 @@
     <string name="s_fast_mine">快速挖掘</string>
     <string name="s_fullbright">夜视</string>
     <string name="s_level">等级</string>
+    <string name="s_gui_scale">GUI 缩放</string>
+    <string name="s_scale">缩放</string>
+    <string name="s_timer">变速齿轮</string>
 </resources>

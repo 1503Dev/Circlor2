@@ -16,6 +16,7 @@
 #include "mc/entity/actor/player/Abilities.h"
 #include "mc/entity/actor/MobEffectInstance.h"
 #include "mc/client/MinecraftGame.h"
+#include "mc/client/Timer.h"
 
 
 bool nuking = false;
@@ -29,6 +30,7 @@ GameMode::destroyBlock_t O_GameMode_destroyBlock = nullptr;
 GameMode::getMaxPickRange_t O_GameMode_getMaxPickRange = nullptr;
 Level::tick_t O_Level_tick = nullptr;
 LocalPlayer::getPickRange_t O_LocalPlayer_getPickRange = nullptr;
+Minecraft::getTimer_t O_Minecraft_getTimer = nullptr;
 MinecraftGame::tickInput_t O_MinecraftGame_tickInput = nullptr;
 
 
@@ -55,6 +57,7 @@ bool H_Abilities_getBool(Abilities* a, AbilitiesIndex ai) {
 void H_ClientInstance_update(ClientInstance *ci, bool b) {
     clientInstance = ci;
     O_ClientInstance_update(ci, b);
+    Circlor::onClientInstanceUpdate();
 }
 void H_ClientInstance_requestLeaveGame(ClientInstance *ci, bool b1, bool b2) {
     LOGD("ClientInstance::requestLeaveGame(%d, %d)", b1, b2);
@@ -96,6 +99,13 @@ float H_LocalPlayer_getPickRange(LocalPlayer *lp) {
     }
     return O_LocalPlayer_getPickRange(lp);
 }
+Timer* H_Minecraft_getTimer(Minecraft* mc) {
+    Timer* t = O_Minecraft_getTimer(mc);
+    if (Circlor::getBool("timer/enabled")) {
+        t->mTicksPerSecond = (float) Circlor::getValue("timer/scale") * 20;
+    }
+    return t;
+}
 void H_MinecraftGame_tickInput(MinecraftGame* mg) {
     O_MinecraftGame_tickInput(mg);
 }
@@ -111,6 +121,7 @@ void HookManager::init() {
     hook("Level::tick", (void*)&H_Level_tick, (void**)&O_Level_tick);
     hook("LocalPlayer::getPickRange", (void*)&H_LocalPlayer_getPickRange, (void**)&O_LocalPlayer_getPickRange);
     hook("MinecraftGame::tickInput", (void*)&H_MinecraftGame_tickInput, (void**)&O_MinecraftGame_tickInput);
+    hook("Minecraft::getTimer", (void*)&H_Minecraft_getTimer, (void**)&O_Minecraft_getTimer);
 }
 
 

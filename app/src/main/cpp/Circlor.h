@@ -18,6 +18,7 @@ public:
     static std::string getFunctionStringValue(const char *path);
     static void setFunctionStringValue(const char *path, const char *value);
     static void setIsFirstTick(bool value);
+    static float randf(float, float);
 
     static double getValue(const char *path);
     static void setValue(const char *path, double value);
@@ -26,6 +27,7 @@ public:
     static bool getBool(const char *path);
     static void setBool(const char *path, bool value);
 
+    static void onClientInstanceUpdate();
     static void onTick();
     static void onDoubleTick();
 
@@ -33,6 +35,10 @@ public:
 
     static bool addEffect(unsigned int effectId, int durationTicks, int level, bool effectVisible);
     static bool addEffect(Actor *actor, unsigned int effectId, int durationTicks, int level, bool effectVisible);
+    static void chatD(std::string const&);
+    static void chatI(std::string const&);
+    static void chatE(std::string const&);
+    static void chatW(std::string const&);
 };
 
 

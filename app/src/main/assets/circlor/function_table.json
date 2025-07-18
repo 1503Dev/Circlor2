@@ -21,6 +21,8 @@
         "GameMode::getMaxPickRange": "634F960",
 
         "GuiData::displayClientMessage": "541E76C",
+        "GuiData::setActionBarMessage": "5420B20",
+        "GuiData::setGuiScale": "5420718",
         "GuiData::setSubtitle": "5420A5C",
         "GuiData::setTitle": "54209D4",
         "GuiData::showTipMessage": "541F844",
@@ -35,6 +37,7 @@
         "LocalPlayer::setPlayerGameTypeWithoutServerNotification": "5BA5D14",
         "LocalPlayer::setPos": "5BA2DFC",
 
+        "Minecraft::getTimer": "6A24930",
         "Minecraft::setGameModeReal": "6A23344",
         "Minecraft::update": "6A23390",
 
@@ -45,6 +48,10 @@
 
         "Player::getPlayerGameType": "643F78C",
 
-        "PlayerSnapshot::PlayerSnapshot": "5650584"
+        "PlayerSnapshot::PlayerSnapshot": "5650584",
+
+        "Timer::Timer": "421A85C",
+        "Timer::getTimeScale": "421A970",
+        "Timer::setTimeScale": "421A980"
     }
 }

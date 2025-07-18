@@ -3,8 +3,12 @@
 //
 
 #include <cstddef>
+#include <thread>
 #include <string>
 #include "Circlor.h"
+#include <iostream>
+#include <random>
+#include <functional>
 
 #define TAG "Native/Circlor"
 #include "global.h"
@@ -88,6 +92,52 @@ bool Circlor::addEffect(Actor *actor, unsigned int effectId, int durationTicks, 
     }
     return false;
 }
+void Circlor::chatD(const std::string & str) {
+    if (clientInstance) {
+        GuiData* gd = clientInstance->getGuiData();
+        if (gd) {
+            gd->displayClientMessage("§b[Circlor] " + str);
+        }
+    }
+}
+void Circlor::chatI(const std::string & str) {
+    if (clientInstance) {
+        GuiData* gd = clientInstance->getGuiData();
+        if (gd) {
+            gd->displayClientMessage("[Circlor] " + str);
+        }
+    }
+}
+void Circlor::chatE(const std::string & str) {
+    if (clientInstance) {
+        GuiData* gd = clientInstance->getGuiData();
+        if (gd) {
+            gd->displayClientMessage("§c[Circlor] " + str);
+        }
+    }
+}
+void Circlor::chatW(const std::string & str) {
+    if (clientInstance) {
+        GuiData* gd = clientInstance->getGuiData();
+        if (gd) {
+            gd->displayClientMessage("§e[Circlor] " + str);
+        }
+    }
+}
+float Circlor::randf(float min = 0.0f, float max = 1.0f) {
+    static thread_local std::mt19937 gen(std::random_device{}());
+    std::uniform_real_distribution<float> dis(min, max);
+    return dis(gen);
+}
+
+
+
+void Circlor::onClientInstanceUpdate() {
+    if (getBool("gui_scale/enabled")) {
+        double guiScale = getValue("gui_scale/value");
+        clientInstance->getGuiData()->setGuiScale((float) guiScale);
+    }
+}
 
 bool onTicked = false;
 void Circlor::onDoubleTick() {
@@ -112,11 +162,17 @@ void Circlor::onDoubleTick() {
     }
 }
 void Circlor::onTick() {
-    if (isFirstTick) {
+    if (isFirstTick && isInGame()) {
         isFirstTick = false;
         GuiData* gd = clientInstance->getGuiData();
         if (gd) {
-            gd->showTipMessage("CirclorAlpha Injected");
+            std::thread([gd]() {
+                std::this_thread::sleep_for(std::chrono::milliseconds(400));
+                if (gd) {
+                    gd->showTipMessage("CirclorAlpha v0.1.0");
+                    chatI("libcirclor.so injected.");
+                }
+            }).detach();
         }
     }
 

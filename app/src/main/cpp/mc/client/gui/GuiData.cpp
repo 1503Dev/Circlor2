@@ -16,6 +16,26 @@ void GuiData::displayClientMessage(const std::string &message) {
         displayClientMessage(this, message);
     }
 }
+void GuiData::setGuiScale(float scale) {
+    setGuiScale_t setGuiScale = (setGuiScale_t) getMCFuncPtr("GuiData::setGuiScale");
+    if (setGuiScale) {
+        setGuiScale(this, scale);
+    }
+}
+void GuiData::setSubtitle(const std::string &message) {
+    setSubtitle_t setSubtitle = (setSubtitle_t) getMCFuncPtr("GuiData::setSubtitle");
+    if (setSubtitle) {
+        setSubtitle(this, message);
+    }
+}
+
+void GuiData::setTitle(const std::string &message) {
+    setTitle_t setTitle = (setTitle_t) getMCFuncPtr("GuiData::setTitle");
+    if (setTitle) {
+        setTitle(this, message);
+    }
+}
+
 void GuiData::showTipMessage(const std::string &message) {
     showTipMessage_t showTipMessage = (showTipMessage_t) getMCFuncPtr("GuiData::showTipMessage");
     if (showTipMessage) {
