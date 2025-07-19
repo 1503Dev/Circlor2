@@ -7,6 +7,7 @@
 
 
 #include "mc/entity/actor/Actor.h"
+#include "mc/level/Level.h"
 
 class Circlor {
 public:
@@ -28,8 +29,8 @@ public:
     static void setBool(const char *path, bool value);
 
     static void onClientInstanceUpdate();
-    static void onTick();
-    static void onDoubleTick();
+    static void onTick(Level*);
+    static void onDoubleTick(Level*);
 
     static std::string invoke(std::string);
 

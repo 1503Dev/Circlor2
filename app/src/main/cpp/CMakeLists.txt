@@ -22,13 +22,15 @@ add_library(${CMAKE_PROJECT_NAME} SHARED
         mc/client/ClientInstance.cpp
         mc/client/gui/GuiData.cpp
         mc/client/Minecraft.cpp
+        mc/client/MinecraftGame.cpp
         mc/entity/actor/Actor.cpp
         mc/entity/actor/player/LocalPlayer.cpp
         mc/entity/actor/player/Player.cpp
         mc/entity/actor/MobEffectInstance.cpp
         mc/gamemode/GameMode.cpp
         mc/level/BlockPos.cpp
-        mc/client/MinecraftGame.cpp
+        mc/level/Level.cpp
+        mc/math/AABB.cpp
 
         HookManager.cpp
         global.cpp

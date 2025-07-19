@@ -2,23 +2,30 @@
     "1.16.201.01_arm64-v8a": {
         "JNI_OnLoad": "41A6BDC",
 
-        "Abilities::Abilities": "642157C",
+        "AABB::expand": "5F97FE8",
+
+        "_Abilities::Abilities": "642157C",
         "Abilities::getBool": "6423020",
 
         "Actor::addEffect": "6688354",
         "Actor::canFly": "6676940",
-        "Actor::getCameraDistance": "66882C4",
+        "_Actor::canFly": "6676940",
+        "Actor::distanceTo": "66750AC",
+        "_Actor::fetchNearbyActorsSorted": "668D148",
+        "Actor::getAABBShapeComponent": "666BB94",
+        "_Actor::getCameraDistance": "66882C4",
         "Actor::getPos": "666EBCC",
-        "Actor::isLocalPlayer": "66785D4",
-        "Actor::setCanFly": "6676968",
+        "Actor::isAlive": "66785FC",
+        "_Actor::isLocalPlayer": "66785D4",
+        "_Actor::setCanFly": "6676968",
 
-        "Camera::getPosition": "55F0C14",
+        "_Camera::getPosition": "55F0C14",
 
         "ClientInstance::getGuiData": "55198C8",
         "ClientInstance::getLocalPlayer": "5510B58",
         "ClientInstance::isInGame": "55177A4",
         "ClientInstance::requestLeaveGame": "550C414",
-        "ClientInstance::tick": "550E108",
+        "_ClientInstance::tick": "550E108",
         "ClientInstance::update": "550E1F0",
 
         "GameMode::destroyBlock": "634D43C",
@@ -31,35 +38,38 @@
         "GuiData::setTitle": "54209D4",
         "GuiData::showTipMessage": "541F844",
 
-        "Level::destroyBlock": "61BD3B8",
+        "_Level::destroyBlock": "61BD3B8",
+        "Level::getRuntimeActorList": "61BDAA4",
         "Level::tick": "61B4C50",
 
         "LevelRendererPlayer::getFov": "5999834",
 
         "LocalPlayer::addLevels": "5BA7658",
         "LocalPlayer::getPickRange": "5BA7B5C",
-        "LocalPlayer::isFlying": "5BA27E0",
+        "_LocalPlayer::isFlying": "5BA27E0",
         "LocalPlayer::setPlayerGameType": "5BA5C5C",
         "LocalPlayer::setPlayerGameTypeWithoutServerNotification": "5BA5D14",
         "LocalPlayer::setPos": "5BA2DFC",
 
         "Minecraft::getTimer": "6A24930",
         "Minecraft::setGameModeReal": "6A23344",
-        "Minecraft::update": "6A23390",
+        "_Minecraft::update": "6A23390",
 
-        "MinecraftGame::getInput": "5572D5C",
-        "MinecraftGame::tickInput": "5561998",
+        "_MinecraftGame::getInput": "5572D5C",
+        "_MinecraftGame::tickInput": "5561998",
 
         "MobEffectInstance::MobEffectInstance": "63B73F0",
 
+        "Player::attack": "6438CE0",
+        "_Player::getAttackDamage": "643E2C0",
         "Player::getCameraOffset": "6437E10",
         "Player::getPlayerGameType": "643F78C",
         "Player::getSpeed": "642C3B4",
 
-        "PlayerSnapshot::PlayerSnapshot": "5650584",
+        "_PlayerSnapshot::PlayerSnapshot": "5650584",
 
-        "Timer::Timer": "421A85C",
-        "Timer::getTimeScale": "421A970",
-        "Timer::setTimeScale": "421A980"
+        "_Timer::Timer": "421A85C",
+        "_Timer::getTimeScale": "421A970",
+        "_Timer::setTimeScale": "421A980"
     }
 }

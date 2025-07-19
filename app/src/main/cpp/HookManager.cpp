@@ -20,6 +20,7 @@
 #include "mc/entity/actor/player/LevelRendererPlayer.h"
 
 
+
 bool nuking = false;
 
 
@@ -69,10 +70,10 @@ void H_ClientInstance_requestLeaveGame(ClientInstance *ci, bool b1, bool b2) {
     O_ClientInstance_requestLeaveGame(ci, b1, b2);
 }
 void H_GameMode_destroyBlock(GameMode *gm, const BlockPos *pos, unsigned char flag) {
+    O_GameMode_destroyBlock(gm, pos, flag);
     if (Circlor::getFunctionBoolValue("destroy_block/disabled")) {
         return;
     }
-    O_GameMode_destroyBlock(gm, pos, flag);
     if (Circlor::getFunctionBoolValue("nuker/enabled")) {
         int radius = (int) Circlor::getFunctionValue("nuker/radius");
         if (radius > 0) {
@@ -94,7 +95,7 @@ float H_GameMode_getMaxPickRange(GameMode *gm) {
     return O_GameMode_getMaxPickRange(gm);
 }
 void H_Level_tick(Level* l) {
-    Circlor::onTick();
+    Circlor::onTick(l);
     O_Level_tick(l);
 }
 float H_LevelRendererPlayer_getFov(LevelRendererPlayer* lrp, float f, char c) {

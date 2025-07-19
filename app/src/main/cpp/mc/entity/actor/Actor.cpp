@@ -55,6 +55,18 @@ void Actor::addEffect(const MobEffectInstance *mobEffectInstance) {
     }
 }
 
-bool Actor::isLocalPlayer() {
+float Actor::distanceTo(Actor *target) {
+    distanceTo_t distanceTo = (distanceTo_t ) getMCFuncPtr("Actor::distanceTo");
+    if (distanceTo) {
+        return distanceTo(this, target);
+    }
+    return 0;
+}
+
+bool Actor::isAlive() {
+    isAlive_t isAlive = (isAlive_t ) getMCFuncPtr("Actor::isAlive");
+    if (isAlive) {
+        return isAlive(this);
+    }
     return false;
 }

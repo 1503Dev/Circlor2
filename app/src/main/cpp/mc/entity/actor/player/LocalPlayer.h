@@ -19,7 +19,9 @@ public:
     typedef void (*setPlayerGameTypeWithoutServerNotification_t)(LocalPlayer*, GameType);
 
     void addLevels(int levels);
-    static bool isLocalPlayer();
+    virtual bool isLocalPlayer() const override {
+        return true;
+    };
     void setPlayerGameType(GameType gameType);
     void setPlayerGameTypeWithoutServerNotification(GameType gameType);
     void setPos(const Vec3 *);

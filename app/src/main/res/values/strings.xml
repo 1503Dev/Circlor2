@@ -16,7 +16,7 @@
     <string name="s_exp_level_change_value">变动量</string>
     <string name="game">游戏</string>
     <string name="about">关于</string>
-    <string name="version_name">0.1.0</string>
+    <string name="version_name" translatable="false">0.1.0</string>
     <string name="s_gamemode">游戏模式</string>
     <string name="s_gamemode_survival">生存</string>
     <string name="s_gamemode_creative">创造</string>
@@ -34,7 +34,7 @@
     <string name="s_fly">飞行</string>
     <string name="s_fly_force">强制飞行</string>
     <string name="s_no_clip">穿墙</string>
-    <string name="s_no_clip_description">最好是配合强制飞行使用</string>
+    <string name="s_no_clip_description">需要刷新飞行状态</string>
     <string name="s_effect_night_vision">夜视</string>
     <string name="s_effect_slow_falling">缓慢降落</string>
     <string name="s_effect_haste">急迫</string>

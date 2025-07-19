@@ -25,17 +25,17 @@
             "widget_type": "collapse",
             "items": [
                 {
-                    "name": "s_exp_level_change",
-                    "widget_type": "action",
-                    "path": "exp_level_change"
-                },
-                {
                     "name": "s_exp_level_change_value",
                     "widget_type": "slider",
                     "path": "exp_level_change_value",
-                    "min": -10,
-                    "max": 10,
+                    "min": -20,
+                    "max": 20,
                     "value": 1
+                },
+                {
+                    "name": "s_exp_level_change",
+                    "widget_type": "action",
+                    "path": "exp_level_change"
                 }
             ]
         },

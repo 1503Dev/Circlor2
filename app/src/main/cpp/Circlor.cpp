@@ -13,6 +13,7 @@
 #define TAG "Native/Circlor"
 #include "global.h"
 #include "mc/gamemode/GameMode.h"
+#include "mc/level/Level.h"
 
 bool Circlor::isFirstTick = true;
 
@@ -140,9 +141,9 @@ void Circlor::onClientInstanceUpdate() {
 }
 
 bool onTicked = false;
-void Circlor::onDoubleTick() {
-    if (isInGame() && clientInstance->getLocalPlayer()) {
-        LocalPlayer *lp = clientInstance->getLocalPlayer();
+void Circlor::onDoubleTick(Level* mcLevel) {
+    LocalPlayer *lp = clientInstance->getLocalPlayer();
+    if (lp) {
         if (Circlor::getBool("fast_mine/enabled")) {
             int level = (int) Circlor::getValue("fast_mine/level");
             addEffect(lp, 3, 9, level * level, false);
@@ -159,9 +160,21 @@ void Circlor::onDoubleTick() {
             }
             addEffect(lp, i, duration, level, false);
         }
+
+//        std::vector<Actor*> actors = mcLevel->getRuntimeActorList();
+//        if (!actors.empty()) {
+//            for (Actor* actor: actors) {
+//                float distance = lp->distanceTo(actor);
+////                LOGD("d: %f", distance);
+//                if (!dynamic_cast<LocalPlayer*>(actor) && distance > 0.5 && actor->isAlive() && distance <= 6) {
+//                    lp->attack(actor);
+//                }
+//            }
+////            LOGD("========");
+//        }
     }
 }
-void Circlor::onTick() {
+void Circlor::onTick(Level* level) {
     if (isFirstTick && isInGame()) {
         isFirstTick = false;
         GuiData* gd = clientInstance->getGuiData();
@@ -181,7 +194,7 @@ void Circlor::onTick() {
         return;
     }
     onTicked = true;
-    onDoubleTick();
+    onDoubleTick(level);
 }
 
 std::string Circlor::invoke(std::string funcPath) {

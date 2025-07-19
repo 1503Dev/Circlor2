@@ -23,3 +23,10 @@ void Player::teleportTo(Vec3& vec3, bool bool1, int int1, int int2, bool bool2) 
         teleportTo(this, vec3, bool1, int1, int2, bool2);
     }
 }
+
+void Player::attack(Actor * target) {
+    attack_t attack = (attack_t) getMCFuncPtr("Player::attack");
+    if (attack) {
+        attack(this, target);
+    }
+}
